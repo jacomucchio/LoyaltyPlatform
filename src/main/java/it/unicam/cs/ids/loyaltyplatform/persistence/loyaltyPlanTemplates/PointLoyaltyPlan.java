@@ -1,4 +1,4 @@
-package it.unicam.cs.ids.loyaltyplatform.persistence.LoyaltyPlanTemplates;
+package it.unicam.cs.ids.loyaltyplatform.persistence.loyaltyPlanTemplates;
 
 import it.unicam.cs.ids.loyaltyplatform.persistence.LoyaltyPlanEntity;
 import jakarta.persistence.DiscriminatorValue;
