@@ -1,19 +1,21 @@
 package it.unicam.cs.ids.loyaltyplatform.persistence;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
+
+import java.util.List;
 //import jakarta.persistence.Table;
 
 @Entity
-//@Table
+@Table(name = "company")
 public class CompanyEntity {
     @Id
     private Integer id;
     private String name;
     private String emailAddress;
+    @OneToMany (mappedBy = "company", cascade =  CascadeType.ALL)
+    private List<LoyaltyPlanEntity> loyaltyPlans;
 
-    public CompanyEntity(Integer id, String name, String emailAddress) {
-        this.id = id;
+    public CompanyEntity( String name, String emailAddress) {
         this.name = name;
         this.emailAddress = emailAddress;
     }
