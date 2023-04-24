@@ -1,4 +1,4 @@
-package it.unicam.cs.ids.loyaltyplatform.persistence;
+package it.unicam.cs.ids.loyaltyplatform.persistence.entity;
 
 import jakarta.persistence.*;
 

@@ -1,8 +1,9 @@
-package it.unicam.cs.ids.loyaltyplatform.persistence;
+package it.unicam.cs.ids.loyaltyplatform.persistence.entity;
 
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
+
 import java.util.Date;
-
+//TODO sistemare la relazione con la tessera alla riga 17
 public class CustomerEntity {
     @Id
     private Integer id;
@@ -12,6 +13,8 @@ public class CustomerEntity {
     private String phoneNumber;
     private Date birthDate;
 
+    @OneToOne(mappedBy = "cliente")
+    private CardEntity card;
     public CustomerEntity(Integer id, String name, String surname, String emailAddress, String phoneNumber, Date birthDate) {
         this.id = id;
         this.name = name;
