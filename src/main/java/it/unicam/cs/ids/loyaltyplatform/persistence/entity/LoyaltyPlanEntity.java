@@ -2,6 +2,10 @@ package it.unicam.cs.ids.loyaltyplatform.persistence.entity;
 
 import jakarta.persistence.*;
 
+/*
+TODO: -relazione tra cliente e piano fedeltà?
+      -rivedere costruttori, getter&setters
+ */
 @Entity
 @Table (name = "loyalty_plan")
 public abstract class LoyaltyPlanEntity {

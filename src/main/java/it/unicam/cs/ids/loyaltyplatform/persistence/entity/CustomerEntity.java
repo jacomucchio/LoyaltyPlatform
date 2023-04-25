@@ -3,9 +3,17 @@ package it.unicam.cs.ids.loyaltyplatform.persistence.entity;
 import jakarta.persistence.*;
 
 import java.util.Date;
-//TODO sistemare la relazione con la tessera alla riga 17
+/*
+TODO: -finire di implementare l'entità.
+      -rivedere la relazione con la tessera
+      -dovrebbe avere una lista di piani fedeltà? In caso affermativo aggiungere la relazione
+      -rivedere costruttori, getter&setters
+ */
+@Entity
+@Table(name = "customer")
 public class CustomerEntity {
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
     private String name;
     private String surname;
@@ -13,8 +21,10 @@ public class CustomerEntity {
     private String phoneNumber;
     private Date birthDate;
 
-    @OneToOne(mappedBy = "cliente")
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "card_id", referencedColumnName = "id")
     private CardEntity card;
+
     public CustomerEntity(Integer id, String name, String surname, String emailAddress, String phoneNumber, Date birthDate) {
         this.id = id;
         this.name = name;
