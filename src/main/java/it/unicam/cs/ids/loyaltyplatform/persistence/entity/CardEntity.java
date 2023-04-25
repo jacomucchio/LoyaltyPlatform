@@ -3,6 +3,7 @@ package it.unicam.cs.ids.loyaltyplatform.persistence.entity;
 import jakarta.persistence.*;
 
 import java.util.Date;
+import java.util.List;
 
 /*
 TODO: -finire di implementare l'entità.
@@ -18,6 +19,9 @@ public class CardEntity {
     private Date creationDate;
     @OneToOne(mappedBy = "card")
     private CustomerEntity cardOwner;
+
+    @OneToMany(mappedBy = "card")
+    private List<TransactionEntity> transactions;
 
     public CardEntity() {
     }
