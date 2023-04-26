@@ -25,6 +25,10 @@ public class CardEntity {
 
     public CardEntity() {
     }
+    public CardEntity(Date creationDate, CustomerEntity cardOwner) {
+        this.creationDate = creationDate;
+        this.cardOwner = cardOwner;
+    }
 
     public Integer getId() {
         return id;
@@ -37,4 +41,6 @@ public class CardEntity {
     public CustomerEntity getCardOwner() {
         return cardOwner;
     }
+
+
 }

@@ -44,4 +44,12 @@ public class CompanyEntity {
     public String getEmailAddress() {
         return emailAddress;
     }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setEmailAddress(String emailAddress) {
+        this.emailAddress = emailAddress;
+    }
 }

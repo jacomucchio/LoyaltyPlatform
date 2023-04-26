@@ -23,10 +23,36 @@ public class TransactionEntity {
     @JoinColumn(name = "card_id")
     private CardEntity customerCard;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "company_id")
     private CompanyEntity azienda;
 
+    public TransactionEntity() {
+    }
 
+    public TransactionEntity(Integer id, Date date, int amount) {
+        this.id = id;
+        this.date = date;
+        this.amount = amount;
+    }
 
+    public Integer getId() {
+        return id;
+    }
+
+    public Date getDate() {
+        return date;
+    }
+
+    public int getAmount() {
+        return amount;
+    }
+
+    public CardEntity getCustomerCard() {
+        return customerCard;
+    }
+
+    public CompanyEntity getAzienda() {
+        return azienda;
+    }
 }

@@ -25,8 +25,7 @@ public class CustomerEntity {
     @JoinColumn(name = "card_id", referencedColumnName = "id")
     private CardEntity card;
 
-    public CustomerEntity(Integer id, String name, String surname, String emailAddress, String phoneNumber, Date birthDate) {
-        this.id = id;
+    public CustomerEntity(String name, String surname, String emailAddress, String phoneNumber, Date birthDate) {
         this.name = name;
         this.surname = surname;
         this.emailAddress = emailAddress;
@@ -59,6 +58,26 @@ public class CustomerEntity {
 
     public Date getBirthDate() {
         return birthDate;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setSurname(String surname) {
+        this.surname = surname;
+    }
+
+    public void setEmailAddress(String emailAddress) {
+        this.emailAddress = emailAddress;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
+
+    public void setBirthDate(Date birthDate) {
+        this.birthDate = birthDate;
     }
 }
 
