@@ -22,7 +22,7 @@ public class CompanyEntity {
     @OneToMany (mappedBy = "company", cascade =  CascadeType.ALL)
     private List<LoyaltyPlanEntity> loyaltyPlans;
 
-    @OneToMany(mappedBy = "company")
+    @OneToMany
     private List<TransactionEntity> transactions;
 
     public CompanyEntity( String name, String emailAddress) {

@@ -25,7 +25,7 @@ public class TransactionEntity {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "company_id")
-    private CompanyEntity azienda;
+    private CompanyEntity company;
 
     public TransactionEntity() {
     }
@@ -52,7 +52,7 @@ public class TransactionEntity {
         return customerCard;
     }
 
-    public CompanyEntity getAzienda() {
-        return azienda;
+    public CompanyEntity getCompany() {
+        return company;
     }
 }

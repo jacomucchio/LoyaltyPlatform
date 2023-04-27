@@ -20,7 +20,7 @@ public class CardEntity {
     @OneToOne(mappedBy = "card")
     private CustomerEntity cardOwner;
 
-    @OneToMany(mappedBy = "card")
+    @OneToMany(mappedBy = "customerCard")
     private List<TransactionEntity> transactions;
 
     public CardEntity() {

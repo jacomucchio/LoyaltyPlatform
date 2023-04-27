@@ -13,7 +13,16 @@ TODO: -finire di implementare l'entità.
 @Table(name = "customer")
 public class CustomerEntity {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    //@GeneratedValue(strategy = GenerationType.AUTO)
+    @SequenceGenerator(
+            name = "customer_sequence",
+            sequenceName = "customer_sequence",
+            allocationSize = 1
+    )
+    @GeneratedValue(
+            strategy = GenerationType.SEQUENCE,
+            generator = "customer_sequence"
+    )
     private Integer id;
     private String name;
     private String surname;
@@ -21,8 +30,8 @@ public class CustomerEntity {
     private String phoneNumber;
     private Date birthDate;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "card_id", referencedColumnName = "id")
+    @OneToOne
+    @JoinColumn(name = "card_id")
     private CardEntity card;
 
     public CustomerEntity(String name, String surname, String emailAddress, String phoneNumber, Date birthDate) {
