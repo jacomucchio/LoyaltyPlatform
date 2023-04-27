@@ -1,7 +1,9 @@
 package it.unicam.cs.ids.loyaltyplatform.persistence.entity;
 
 import jakarta.persistence.*;
+import org.springframework.cglib.core.Local;
 
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 
@@ -16,7 +18,7 @@ public class CardEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
-    private Date creationDate;
+    private LocalDate creationDate;
     @OneToOne(mappedBy = "card")
     private CustomerEntity cardOwner;
 
@@ -25,7 +27,7 @@ public class CardEntity {
 
     public CardEntity() {
     }
-    public CardEntity(Date creationDate, CustomerEntity cardOwner) {
+    public CardEntity(LocalDate creationDate, CustomerEntity cardOwner) {
         this.creationDate = creationDate;
         this.cardOwner = cardOwner;
     }
@@ -34,7 +36,7 @@ public class CardEntity {
         return id;
     }
 
-    public Date getCreationDate() {
+    public LocalDate getCreationDate() {
         return creationDate;
     }
 

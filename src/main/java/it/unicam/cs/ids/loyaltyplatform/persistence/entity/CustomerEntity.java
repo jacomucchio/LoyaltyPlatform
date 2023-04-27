@@ -2,6 +2,7 @@ package it.unicam.cs.ids.loyaltyplatform.persistence.entity;
 
 import jakarta.persistence.*;
 
+import java.time.LocalDate;
 import java.util.Date;
 /*
 TODO: -finire di implementare l'entità.
@@ -28,13 +29,13 @@ public class CustomerEntity {
     private String surname;
     private String emailAddress;
     private String phoneNumber;
-    private Date birthDate;
+    private LocalDate birthDate;
 
     @OneToOne
     @JoinColumn(name = "card_id")
     private CardEntity card;
 
-    public CustomerEntity(String name, String surname, String emailAddress, String phoneNumber, Date birthDate) {
+    public CustomerEntity(String name, String surname, String emailAddress, String phoneNumber, LocalDate birthDate) {
         this.name = name;
         this.surname = surname;
         this.emailAddress = emailAddress;
@@ -65,7 +66,7 @@ public class CustomerEntity {
         return phoneNumber;
     }
 
-    public Date getBirthDate() {
+    public LocalDate getBirthDate() {
         return birthDate;
     }
 
@@ -85,7 +86,7 @@ public class CustomerEntity {
         this.phoneNumber = phoneNumber;
     }
 
-    public void setBirthDate(Date birthDate) {
+    public void setBirthDate(LocalDate birthDate) {
         this.birthDate = birthDate;
     }
 }

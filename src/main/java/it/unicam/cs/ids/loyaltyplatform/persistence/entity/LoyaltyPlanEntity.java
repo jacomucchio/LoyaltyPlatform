@@ -20,6 +20,7 @@ public abstract class LoyaltyPlanEntity {
 
     public LoyaltyPlanEntity(String name) {
         this.name = name;
+        this.customerCount=0;
     }
 
     public LoyaltyPlanEntity() {

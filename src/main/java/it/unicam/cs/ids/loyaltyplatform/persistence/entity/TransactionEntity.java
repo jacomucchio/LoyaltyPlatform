@@ -2,6 +2,7 @@ package it.unicam.cs.ids.loyaltyplatform.persistence.entity;
 
 import jakarta.persistence.*;
 
+import java.time.LocalDate;
 import java.util.Date;
 /*
 TODO: -finire di implementare l'entità.
@@ -16,7 +17,7 @@ public class TransactionEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
-    private Date date;
+    private LocalDate date;
     private int amount;
 
     @ManyToOne(fetch = FetchType.LAZY)
@@ -30,7 +31,7 @@ public class TransactionEntity {
     public TransactionEntity() {
     }
 
-    public TransactionEntity(Integer id, Date date, int amount) {
+    public TransactionEntity(Integer id, LocalDate date, int amount) {
         this.id = id;
         this.date = date;
         this.amount = amount;
@@ -40,7 +41,7 @@ public class TransactionEntity {
         return id;
     }
 
-    public Date getDate() {
+    public LocalDate getDate() {
         return date;
     }
 
