@@ -5,12 +5,7 @@ import jakarta.persistence.*;
 import java.util.List;
 import jakarta.persistence.Table;
 
-/*
-TODO: -finire di implementare l'entità.
-      -Finire di implementare la relazione fra azienda e piani fedeltà
-      -Finire di implementare la relazione fra azienda e transazione
-      -rivedere costruttori, getter&setters
- */
+
 @Entity
 @Table(name = "company")
 public class CompanyEntity {
