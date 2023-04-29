@@ -1,4 +1,4 @@
 package it.unicam.cs.ids.loyaltyplatform.model;
 
-public class CardDto {
+public class Company {
 }

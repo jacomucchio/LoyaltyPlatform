@@ -1,11 +1,11 @@
 package it.unicam.cs.ids.loyaltyplatform.model;
-//TODO controllare il costruttore che parametri deve avere. Company????
-public class LoyaltyPlanDto {
+
+public class LoyaltyPlan {
     private String name;
     private int customerCount;
     private Integer companyId;
 
-    public LoyaltyPlanDto(String name, Integer companyId) {
+    public LoyaltyPlan(String name, int customerCount, Integer companyId) {
         this.name = name;
         this.customerCount = 0;
         this.companyId = companyId;

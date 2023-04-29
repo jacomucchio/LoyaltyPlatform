@@ -8,6 +8,7 @@ TODO: -relazione tra cliente e piano fedeltà?
  */
 @Entity
 @Table (name = "loyalty_plan")
+@DiscriminatorColumn(name = "plan_type", discriminatorType = DiscriminatorType.STRING)
 public abstract class LoyaltyPlanEntity {
     @Id
     @GeneratedValue (strategy = GenerationType.IDENTITY)

@@ -89,6 +89,7 @@ public class CustomerEntity {
     public void setBirthDate(LocalDate birthDate) {
         this.birthDate = birthDate;
     }
+
 }
 
 
