@@ -44,5 +44,4 @@ public class CardEntity {
         return cardOwner;
     }
 
-
 }
