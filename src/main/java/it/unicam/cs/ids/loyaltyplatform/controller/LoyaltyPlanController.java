@@ -21,10 +21,6 @@ public class LoyaltyPlanController {
     public List<LoyaltyPlanEntity> findAll() {
         return loyaltyPlanService.findAll();
     }
-    @GetMapping("/{type}")
-    public List<LoyaltyPlanEntity> findByType(@PathVariable String type) {
-        return loyaltyPlanService.findByType(type);
-    }
 
     @PostMapping("/")
     public void save(@RequestBody LoyaltyPlanEntity loyaltyPlan) {
@@ -34,5 +30,10 @@ public class LoyaltyPlanController {
     @DeleteMapping("/{id}")
     public void deleteById(@PathVariable Integer id) {
         loyaltyPlanService.deleteById(id);
+    }
+
+    @GetMapping("/{id}")
+    public void findById(@PathVariable Integer id) {
+        loyaltyPlanService.findById(id);
     }
 }

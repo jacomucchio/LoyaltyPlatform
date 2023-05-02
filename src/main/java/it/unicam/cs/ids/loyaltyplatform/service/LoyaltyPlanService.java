@@ -35,10 +35,6 @@ public class LoyaltyPlanService {
                  .orElseThrow(() -> new NoSuchElementException("Loyalty plan not found with id: " + id));
     }
 
-    public List<LoyaltyPlanEntity> findByType(String type) {
-        return loyaltyPlanRepository.findByType(type);
-    }
-
     public void save(LoyaltyPlanEntity loyaltyPlanEntity) {
         loyaltyPlanRepository.save(loyaltyPlanEntity);
     }

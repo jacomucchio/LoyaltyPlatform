@@ -8,6 +8,6 @@ import java.util.List;
 
 @Repository
 public interface LoyaltyPlanRepository extends JpaRepository<LoyaltyPlanEntity,Integer> {
-    List<LoyaltyPlanEntity> findByType(String type);
+     //List<LoyaltyPlanEntity> findByCompany(Integer company_id);
 
 }

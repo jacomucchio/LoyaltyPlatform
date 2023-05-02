@@ -10,4 +10,20 @@ import java.util.List;
 @DiscriminatorValue("coalition")
 public class CoalitionLoyaltyPlan extends LoyaltyPlanEntity {
     private List<String> coalitionPartners; // Lista dei partner della coalizione
+
+    public CoalitionLoyaltyPlan(String name, String type, List<String> coalitionPartners) {
+        super(name, type);
+        this.coalitionPartners = coalitionPartners;
+    }
+
+    public CoalitionLoyaltyPlan(List<String> coalitionPartners) {
+        this.coalitionPartners = coalitionPartners;
+    }
+
+    public CoalitionLoyaltyPlan() {
+    }
+
+    public void setCoalitionPartners(List<String> coalitionPartners) {
+        this.coalitionPartners = coalitionPartners;
+    }
 }
