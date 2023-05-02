@@ -11,8 +11,8 @@ public class LevelLoyaltyPlan extends LoyaltyPlanEntity {
 
     private double discountPercentage;
 
-    public LevelLoyaltyPlan(String name, String type, int numberOfLevels, double discountPercentage) {
-        super(name, type);
+    public LevelLoyaltyPlan(String name, int numberOfLevels, double discountPercentage) {
+        super(name);
         this.numberOfLevels = numberOfLevels;
         this.discountPercentage = discountPercentage;
     }

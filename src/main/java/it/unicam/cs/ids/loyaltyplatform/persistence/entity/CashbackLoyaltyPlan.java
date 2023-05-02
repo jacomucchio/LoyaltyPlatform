@@ -12,8 +12,8 @@ public class CashbackLoyaltyPlan extends LoyaltyPlanEntity {
     private double maxCashbackAmount;
 
 
-    public CashbackLoyaltyPlan(String name, String type, double cashbackPercentage, double maxCashbackAmount) {
-        super(name, type);
+    public CashbackLoyaltyPlan(String name, double cashbackPercentage, double maxCashbackAmount) {
+        super(name);
         this.cashbackPercentage = cashbackPercentage;
         this.maxCashbackAmount = maxCashbackAmount;
     }

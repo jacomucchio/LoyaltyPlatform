@@ -11,8 +11,8 @@ import java.util.List;
 public class CoalitionLoyaltyPlan extends LoyaltyPlanEntity {
     private List<String> coalitionPartners; // Lista dei partner della coalizione
 
-    public CoalitionLoyaltyPlan(String name, String type, List<String> coalitionPartners) {
-        super(name, type);
+    public CoalitionLoyaltyPlan(String name, List<String> coalitionPartners) {
+        super(name);
         this.coalitionPartners = coalitionPartners;
     }
 

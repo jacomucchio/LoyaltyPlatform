@@ -11,13 +11,8 @@ public class PointLoyaltyPlan extends LoyaltyPlanEntity {
 
     private int rewardThreshold;
 
-    public PointLoyaltyPlan(String name, String type, double conversionRate, int rewardThreshold) {
-        super(name, type);
-        this.conversionRate = conversionRate;
-        this.rewardThreshold = rewardThreshold;
-    }
-
-    public PointLoyaltyPlan(double conversionRate, int rewardThreshold) {
+    public PointLoyaltyPlan(String name, double conversionRate, int rewardThreshold) {
+        super(name);
         this.conversionRate = conversionRate;
         this.rewardThreshold = rewardThreshold;
     }

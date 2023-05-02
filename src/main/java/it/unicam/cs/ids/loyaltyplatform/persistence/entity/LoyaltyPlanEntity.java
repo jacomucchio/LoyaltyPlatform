@@ -1,30 +1,39 @@
 package it.unicam.cs.ids.loyaltyplatform.persistence.entity;
 
+import com.fasterxml.jackson.annotation.JsonSubTypes;
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import jakarta.persistence.*;
 
 /*
 TODO: -private String type ci va o è una ripetizione con DiscriminatorColumn?
       -type enum o string?
-      -rivedere costruttori, getter&setters
+      -costruttore deve avere azienda?
+
  */
 @Entity
 @Table (name = "loyalty_plan")
 @DiscriminatorColumn(name = "type", discriminatorType = DiscriminatorType.STRING)
+
+@JsonTypeInfo(
+        use = JsonTypeInfo.Id.NAME,
+        include = JsonTypeInfo.As.PROPERTY,
+        property = "type")
+@JsonSubTypes({
+        @JsonSubTypes.Type(value = PointLoyaltyPlan.class, name = "point"),
+        @JsonSubTypes.Type(value = LevelLoyaltyPlan.class, name = "level")
+})
 public abstract class LoyaltyPlanEntity {
     @Id
     @GeneratedValue (strategy = GenerationType.IDENTITY)
     private Integer id;
     private String name;
-    @Column(name = "type", insertable = false, updatable = false)
-    private String type;
     private int customerCount;
     @ManyToOne
     @JoinColumn(name = "company_id")
     private CompanyEntity company;
 
-    public LoyaltyPlanEntity(String name, String type) {
+    public LoyaltyPlanEntity(String name) {
         this.name = name;
-        this.type =type;
         this.customerCount=0;
     }
 

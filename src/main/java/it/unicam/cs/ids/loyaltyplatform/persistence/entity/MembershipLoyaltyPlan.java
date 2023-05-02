@@ -10,8 +10,8 @@ public class MembershipLoyaltyPlan extends LoyaltyPlanEntity {
     private double membershipFee;
     private int membershipDuration;
 
-    public MembershipLoyaltyPlan(String name, String type, double membershipFee, int membershipDuration) {
-        super(name, type);
+    public MembershipLoyaltyPlan(String name, double membershipFee, int membershipDuration) {
+        super(name);
         this.membershipFee = membershipFee;
         this.membershipDuration = membershipDuration;
     }

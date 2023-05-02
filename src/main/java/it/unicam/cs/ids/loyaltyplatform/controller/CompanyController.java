@@ -19,20 +19,21 @@ public class CompanyController {
     public CompanyController(CompanyService companyService) {
         this.companyService = companyService;
     }
-    @GetMapping
+    @GetMapping("/lists")
     public List<CompanyEntity> getCompanies(){
         return this.companyService.getCompanies();
     }
-    @GetMapping
+
+    @GetMapping("/aaaaaaaaaaa")
     public CompanyEntity getCompanyById(Integer id){
         return this.companyService.getCompanyById(id);
     }
-    @PostMapping
+    @PostMapping("/register")
     public void registerNewCompany(@RequestBody CompanyEntity company){
         this.companyService.addNewCompany(company);
     }
     //
-    @DeleteMapping
+    @DeleteMapping("dm")
     public void deleteCompany(CompanyEntity company){
         this.companyService.deleteCompany(company);
     }
