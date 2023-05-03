@@ -11,10 +11,6 @@ import org.springframework.web.server.ResponseStatusException;
 import java.util.List;
 import java.util.Optional;
 
-/*
-    TODO:
-        -Controlla i query/find method
- */
 @Service
 public class CompanyService {
 
@@ -28,29 +24,21 @@ public class CompanyService {
     public List<CompanyEntity> getCompanies(){
         return this.companyRepository.findAll();
     }
+
     public CompanyEntity getCompanyById(Integer id){
         return this.companyRepository.findById(id).
                 orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
     }
 
-
     public void addNewCompany(CompanyEntity company) {
-        Optional<CompanyEntity> optionalCompany = this.companyRepository.findById(company.getId());
-        if (optionalCompany.isPresent()){
-            throw new IllegalStateException("Company is already registered");
-        }else
-            companyRepository.save(company);
+        this.companyRepository.save(company);
     }
 
-    public void deleteCompany(CompanyEntity company) {
-        boolean companyExists = this.companyRepository.existsById(company.getId());
-        if (!companyExists){
-            throw new IllegalStateException(
-                    "Company with id: " +company.getId()+
-                            "\n named: "+company.getName()+" does not exist");
-        }else
-            this.companyRepository.deleteById(company.getId());
+    public void deleteCompany(Integer id) {
+        this.companyRepository.deleteById(id);
     }
+
+
 
 
 }

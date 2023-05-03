@@ -6,11 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-/*
-    TODO:
-        -Controlla annotazione @DeleteMapping e @PathVariable
 
- */
 @RestController
 @RequestMapping(path = "/company")
 public class CompanyController {
@@ -19,22 +15,20 @@ public class CompanyController {
     public CompanyController(CompanyService companyService) {
         this.companyService = companyService;
     }
-    @GetMapping("/lists")
+    @GetMapping("/list")
     public List<CompanyEntity> getCompanies(){
         return this.companyService.getCompanies();
     }
-
-    @GetMapping("/aaaaaaaaaaa")
-    public CompanyEntity getCompanyById(Integer id){
+    @GetMapping("/{id}")
+    public CompanyEntity getCompanyById(@PathVariable Integer id){
         return this.companyService.getCompanyById(id);
     }
     @PostMapping("/register")
     public void registerNewCompany(@RequestBody CompanyEntity company){
         this.companyService.addNewCompany(company);
     }
-    //
-    @DeleteMapping("dm")
-    public void deleteCompany(CompanyEntity company){
-        this.companyService.deleteCompany(company);
+    @DeleteMapping("/delete/{id}")
+    public void deleteCompany(@PathVariable Integer id){
+        this.companyService.deleteCompany(id);
     }
 }
