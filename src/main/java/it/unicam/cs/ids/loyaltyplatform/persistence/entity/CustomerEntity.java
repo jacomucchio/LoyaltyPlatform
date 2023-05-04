@@ -3,7 +3,8 @@ package it.unicam.cs.ids.loyaltyplatform.persistence.entity;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
-import java.util.Date;
+import java.util.List;
+
 /*
 TODO: -finire di implementare l'entità.
       -rivedere la relazione con la tessera
@@ -34,6 +35,9 @@ public class CustomerEntity {
     @OneToOne
     @JoinColumn(name = "card_id")
     private CardEntity card;
+
+    @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL)
+    private List<PlanEnrollmentEntity> enrollments;
 
     public CustomerEntity(String name, String surname, String emailAddress, String phoneNumber, LocalDate birthDate) {
         this.name = name;

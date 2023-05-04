@@ -4,6 +4,8 @@ import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import jakarta.persistence.*;
 
+import java.util.List;
+
 /*
 TODO: -private String type ci va o è una ripetizione con DiscriminatorColumn?
       -type enum o string?
@@ -13,6 +15,8 @@ TODO: -private String type ci va o è una ripetizione con DiscriminatorColumn?
 @Entity
 @Table (name = "loyalty_plan")
 @DiscriminatorColumn(name = "type", discriminatorType = DiscriminatorType.STRING)
+
+
 
 @JsonTypeInfo(
         use = JsonTypeInfo.Id.NAME,
@@ -31,6 +35,11 @@ public abstract class LoyaltyPlanEntity {
     @ManyToOne
     @JoinColumn(name = "company_id")
     private CompanyEntity company;
+
+    @OneToMany(mappedBy = "loyaltyPlan", cascade =CascadeType.ALL)
+    private List<PlanEnrollmentEntity> enrollments;
+
+
 
     public LoyaltyPlanEntity(String name) {
         this.name = name;

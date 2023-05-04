@@ -3,7 +3,6 @@ package it.unicam.cs.ids.loyaltyplatform.persistence.entity;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
-import java.util.Date;
 /*
 TODO: -finire di implementare l'entità.
       -Finire di implementare la relazione fra tessera e transazione
@@ -56,4 +55,6 @@ public class TransactionEntity {
     public CompanyEntity getCompany() {
         return company;
     }
+
+
 }

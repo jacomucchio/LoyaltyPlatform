@@ -1,8 +1,10 @@
 package it.unicam.cs.ids.loyaltyplatform.controller;
 
 import it.unicam.cs.ids.loyaltyplatform.persistence.entity.CustomerEntity;
+import it.unicam.cs.ids.loyaltyplatform.persistence.entity.PlanEnrollmentEntity;
 import it.unicam.cs.ids.loyaltyplatform.service.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -37,5 +39,6 @@ public class CustomerController {
     {
         customerService.deleteById(id);
     }
+
 
 }
