@@ -2,6 +2,7 @@ package it.unicam.cs.ids.loyaltyplatform.persistence.entity;
 
 import jakarta.persistence.*;
 
+import java.util.ArrayList;
 import java.util.List;
 import jakarta.persistence.Table;
 
@@ -15,7 +16,7 @@ public class CompanyEntity {
     private String name;
     private String emailAddress;
     @OneToMany (mappedBy = "company", cascade =  CascadeType.ALL)
-    private List<LoyaltyPlanEntity> loyaltyPlans;
+    private List<LoyaltyPlanEntity> loyaltyPlans=new ArrayList<>();
 
     @OneToMany
     private List<TransactionEntity> transactions;

@@ -1,8 +1,10 @@
 package it.unicam.cs.ids.loyaltyplatform.controller;
 
 import it.unicam.cs.ids.loyaltyplatform.persistence.entity.CompanyEntity;
+import it.unicam.cs.ids.loyaltyplatform.persistence.entity.LoyaltyPlanEntity;
 import it.unicam.cs.ids.loyaltyplatform.service.CompanyService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -15,6 +17,7 @@ public class CompanyController {
     public CompanyController(CompanyService companyService) {
         this.companyService = companyService;
     }
+
     @GetMapping("/list")
     public List<CompanyEntity> getCompanies(){
         return this.companyService.getCompanies();
@@ -27,8 +30,13 @@ public class CompanyController {
     public void registerNewCompany(@RequestBody CompanyEntity company){
         this.companyService.addNewCompany(company);
     }
+
     @DeleteMapping("/delete/{id}")
     public void deleteCompany(@PathVariable Integer id){
         this.companyService.deleteCompany(id);
     }
+
+    @PostMapping("/addPlan")
+    public void addPlan(){}
+
 }

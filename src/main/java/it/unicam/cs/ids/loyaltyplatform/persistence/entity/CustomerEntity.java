@@ -1,15 +1,17 @@
 package it.unicam.cs.ids.loyaltyplatform.persistence.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /*
-TODO: -finire di implementare l'entità.
-      -rivedere la relazione con la tessera
-      -dovrebbe avere una lista di piani fedeltà? In caso affermativo aggiungere la relazione
-      -rivedere costruttori, getter&setters
+TODO: -controllare lista di loyaltyplans
+      -relazione molti a molti con piano?
+      -Lista di enrollments oppure di piani fedeltà?
  */
 @Entity
 @Table(name = "customer")
@@ -36,8 +38,11 @@ public class CustomerEntity {
     @JoinColumn(name = "card_id")
     private CardEntity card;
 
-    @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL)
-    private List<PlanEnrollmentEntity> enrollments;
+    @ManyToMany(cascade = { CascadeType.PERSIST, CascadeType.MERGE })
+    @JoinTable(name = "customerEnrollment",
+            joinColumns = @JoinColumn(name = "customer_id"),
+            inverseJoinColumns = @JoinColumn(name = "plan_id"))
+    private List<LoyaltyPlanEntity> loyaltyPlanList = new ArrayList<>();
 
     public CustomerEntity(String name, String surname, String emailAddress, String phoneNumber, LocalDate birthDate) {
         this.name = name;
@@ -52,6 +57,10 @@ public class CustomerEntity {
 
     public Integer getId() {
         return id;
+    }
+
+    public List<LoyaltyPlanEntity> getLoyaltyPlanList() {
+        return loyaltyPlanList;
     }
 
     public String getName() {

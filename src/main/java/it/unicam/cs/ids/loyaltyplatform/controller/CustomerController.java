@@ -1,14 +1,13 @@
 package it.unicam.cs.ids.loyaltyplatform.controller;
 
 import it.unicam.cs.ids.loyaltyplatform.persistence.entity.CustomerEntity;
-import it.unicam.cs.ids.loyaltyplatform.persistence.entity.PlanEnrollmentEntity;
 import it.unicam.cs.ids.loyaltyplatform.service.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-
+//TODO controllare service di planEnrollment non so se va qua o boh
 @RestController
 @RequestMapping("/customers")
 public class CustomerController {
@@ -30,9 +29,9 @@ public class CustomerController {
         return customerService.findById(id);
     }
     @PostMapping("/")
-    public void save(CustomerEntity customerEntity)
+    public void save(@RequestBody CustomerEntity customer)
     {
-        customerService.save(customerEntity);
+        customerService.save(customer);
     }
     @DeleteMapping("/{id}")
     public void deleteById(@PathVariable Integer id)
@@ -40,5 +39,10 @@ public class CustomerController {
         customerService.deleteById(id);
     }
 
+    @PostMapping("/{customerId}/addLoyaltyPlan/{planId}")
+    public ResponseEntity<String> addLoyaltyPlan(@PathVariable Integer customerId, @PathVariable Integer planId) {
+        customerService.addLoyaltyPlan(customerId,planId);
+        return ResponseEntity.ok("Loyalty plan subscription successful");
+    }
 
 }

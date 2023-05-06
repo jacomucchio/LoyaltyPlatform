@@ -1,15 +1,19 @@
 package it.unicam.cs.ids.loyaltyplatform.persistence.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import jakarta.persistence.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /*
 TODO: -private String type ci va o è una ripetizione con DiscriminatorColumn?
       -type enum o string?
       -costruttore deve avere azienda?
+      -relazione molti a molti con cliente?
+      -ci va enrollments oppure clientee?
 
  */
 @Entity
@@ -24,7 +28,10 @@ TODO: -private String type ci va o è una ripetizione con DiscriminatorColumn?
         property = "type")
 @JsonSubTypes({
         @JsonSubTypes.Type(value = PointLoyaltyPlan.class, name = "point"),
-        @JsonSubTypes.Type(value = LevelLoyaltyPlan.class, name = "level")
+        @JsonSubTypes.Type(value = LevelLoyaltyPlan.class, name = "level"),
+        @JsonSubTypes.Type(value = CashbackLoyaltyPlan.class, name = "cashback"),
+        @JsonSubTypes.Type(value = CoalitionLoyaltyPlan.class, name = "coalition"),
+        @JsonSubTypes.Type(value = MembershipLoyaltyPlan.class, name = "membership")
 })
 public abstract class LoyaltyPlanEntity {
     @Id
@@ -36,8 +43,9 @@ public abstract class LoyaltyPlanEntity {
     @JoinColumn(name = "company_id")
     private CompanyEntity company;
 
-    @OneToMany(mappedBy = "loyaltyPlan", cascade =CascadeType.ALL)
-    private List<PlanEnrollmentEntity> enrollments;
+    @ManyToMany(mappedBy = "loyaltyPlanList")
+    @JsonIgnore
+    private List<CustomerEntity> enrolledCustomers = new ArrayList<>();
 
 
 
@@ -47,6 +55,10 @@ public abstract class LoyaltyPlanEntity {
     }
 
     public LoyaltyPlanEntity() {
+    }
+
+    public List<CustomerEntity> getEnrolledCustomers() {
+        return enrolledCustomers;
     }
 
     public Integer getId() {
@@ -63,6 +75,10 @@ public abstract class LoyaltyPlanEntity {
 
     public CompanyEntity getCompany() {
         return company;
+    }
+
+    public void setCompany(CompanyEntity company) {
+        this.company = company;
     }
 
     public void setName(String name) {
