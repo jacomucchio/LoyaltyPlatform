@@ -33,20 +33,10 @@ public class TransactionService {
 
     /*
     TODO: -applyBenefits se dovrebbe modificare l'importo della transazione in modoc che quando
-           viene riutilizzato applyBenefits viene applicato con la transazione aggiornata
+           viene riutilizzato applyBenefits viene applicato con la transazione aggiornata klea pici
      */
 
     public TransactionEntity validateTransaction(CompanyEntity company, CardEntity card, double amount) {
-        /*
-        TransactionEntity transactionEntity = new TransactionEntity(amount,company,card);
-        for (EnrollmentEntity enrollment : card.getCardOwner().getEnrollments()) {
-            if (enrollment.getPlan().getCompany().equals(company)) {
-                enrollmentRepository.save(enrollment.getPlan().applyBenefits(enrollment,transactionEntity));
-            }
-        }
-        return transactionEntity;
-
-         */
         TransactionEntity transactionEntity = new TransactionEntity(amount, company, card);
         List<EnrollmentEntity> enrollments = new ArrayList<>(card.getCardOwner().getEnrollments());
 
@@ -55,7 +45,6 @@ public class TransactionService {
                 enrollmentRepository.save(enrollment.getPlan().applyBenefits(enrollment, transactionEntity));
             }
         }
-
         return transactionEntity;
     }
 }
