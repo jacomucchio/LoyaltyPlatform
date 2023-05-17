@@ -33,7 +33,7 @@ public class TransactionService {
 
     /*
     TODO: -applyBenefits se dovrebbe modificare l'importo della transazione in modoc che quando
-           viene riutilizzato applyBenefits viene applicato con la transazione aggiornata samu
+           viene riutilizzato applyBenefits viene applicato con la transazione aggiornata jacoponflogno
      */
 
     public TransactionEntity validateTransaction(CompanyEntity company, CardEntity card, double amount) {
