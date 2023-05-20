@@ -44,4 +44,7 @@ public class LoyaltyPlanService {
     }
 
 
+    public List<LoyaltyPlanEntity> findByCompanyId(Integer id) {
+        return loyaltyPlanRepository.findByCompanyId(id);
+    }
 }

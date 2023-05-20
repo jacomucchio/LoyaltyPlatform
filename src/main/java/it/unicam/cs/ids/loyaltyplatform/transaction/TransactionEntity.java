@@ -64,5 +64,7 @@ public class TransactionEntity {
         return company;
     }
 
-
+    public void setAmount(double amount) {
+        this.amount = amount;
+    }
 }

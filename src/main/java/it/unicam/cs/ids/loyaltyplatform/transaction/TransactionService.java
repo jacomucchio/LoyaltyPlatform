@@ -31,11 +31,6 @@ public class TransactionService {
     public void save(TransactionEntity transactionEntity){transactionRepository.save(transactionEntity);}
     public void deleteById(Integer id){transactionRepository.deleteById(id);}
 
-    /*
-    TODO: -applyBenefits se dovrebbe modificare l'importo della transazione in modoc che quando
-           viene riutilizzato applyBenefits viene applicato con la transazione aggiornata klea pici
-     */
-
     public TransactionEntity validateTransaction(CompanyEntity company, CardEntity card, double amount) {
         TransactionEntity transactionEntity = new TransactionEntity(amount, company, card);
         List<EnrollmentEntity> enrollments = new ArrayList<>(card.getCardOwner().getEnrollments());
@@ -45,6 +40,7 @@ public class TransactionService {
                 enrollmentRepository.save(enrollment.getPlan().applyBenefits(enrollment, transactionEntity));
             }
         }
+        this.save(transactionEntity);
         return transactionEntity;
     }
 }
