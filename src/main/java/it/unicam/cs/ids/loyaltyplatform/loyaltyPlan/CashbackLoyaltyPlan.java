@@ -29,7 +29,10 @@ public class CashbackLoyaltyPlan extends LoyaltyPlanEntity {
 
     @Override
     public EnrollmentEntity applyBenefits(EnrollmentEntity enrollment, TransactionEntity transactionEntity) {
-        return null;
+        double cashbackAmount = (transactionEntity.getAmount() * cashbackPercentage) / 100;
+        cashbackAmount = Math.min(cashbackAmount, maxCashbackAmount);
+        transactionEntity.setAmount(transactionEntity.getAmount()-cashbackAmount);
+        return enrollment;
     }
 
     public double getCashbackPercentage() {
