@@ -48,5 +48,9 @@ public class LoyaltyPlanController {
     public void findById(@PathVariable Integer id) {
         loyaltyPlanService.findById(id);
     }
-
+    @GetMapping("/company/{companyId}/loyalty-plans")
+    public ResponseEntity<List<LoyaltyPlanEntity>> findByCompanyId(@PathVariable Integer companyId)
+    {
+        return ResponseEntity.ok(loyaltyPlanService.findByCompanyId(companyId));
+    }
 }
