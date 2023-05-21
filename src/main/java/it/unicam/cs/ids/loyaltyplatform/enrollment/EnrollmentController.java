@@ -1,6 +1,7 @@
 package it.unicam.cs.ids.loyaltyplatform.enrollment;
 
 import it.unicam.cs.ids.loyaltyplatform.customer.CustomerEntity;
+import it.unicam.cs.ids.loyaltyplatform.level.LevelService;
 import it.unicam.cs.ids.loyaltyplatform.loyaltyPlan.LoyaltyPlanEntity;
 import it.unicam.cs.ids.loyaltyplatform.enrollment.EnrollmentEntity;
 import it.unicam.cs.ids.loyaltyplatform.customer.CustomerService;
@@ -30,5 +31,15 @@ public class EnrollmentController {
         LoyaltyPlanEntity plan = planService.findById(planId);
         return ResponseEntity.ok(enrollmentService.enroll(customer, plan));
     }
+
+    @PostMapping("/customer/{customerId}/plan/{planId}/levels/upgrade-to-level/{levelId}")
+    public ResponseEntity<EnrollmentEntity> upgradeLevel(@PathVariable Integer customerId,
+                                                         @PathVariable Integer planId,
+                                                         @PathVariable Integer levelId) {
+        CustomerEntity customer = customerService.findById(customerId);
+        LoyaltyPlanEntity plan = planService.findById(planId);
+        return ResponseEntity.ok(enrollmentService.upgradeLevel(customer, plan, levelId));
+    }
+
 
 }

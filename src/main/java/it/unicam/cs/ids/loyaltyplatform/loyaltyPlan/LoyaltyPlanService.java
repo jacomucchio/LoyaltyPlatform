@@ -2,6 +2,7 @@ package it.unicam.cs.ids.loyaltyplatform.loyaltyPlan;
 
 import it.unicam.cs.ids.loyaltyplatform.company.CompanyEntity;
 import it.unicam.cs.ids.loyaltyplatform.company.CompanyRepository;
+import it.unicam.cs.ids.loyaltyplatform.level.LevelEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -47,4 +48,6 @@ public class LoyaltyPlanService {
     public List<LoyaltyPlanEntity> findByCompanyId(Integer id) {
         return loyaltyPlanRepository.findByCompanyId(id);
     }
+
+
 }

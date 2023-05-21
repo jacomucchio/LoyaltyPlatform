@@ -1,19 +1,27 @@
 package it.unicam.cs.ids.loyaltyplatform.enrollment;
 
 import it.unicam.cs.ids.loyaltyplatform.customer.CustomerEntity;
+import it.unicam.cs.ids.loyaltyplatform.level.LevelEntity;
+import it.unicam.cs.ids.loyaltyplatform.level.LevelService;
 import it.unicam.cs.ids.loyaltyplatform.loyaltyPlan.*;
+import it.unicam.cs.ids.loyaltyplatform.loyaltyPlan.LevelLoyaltyPlan;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.NoSuchElementException;
+import java.util.Optional;
 
 @Service
 public class EnrollmentService {
     private final EnrollmentRepository enrollmentRepository;
+    private final LevelService levelService;
 
     @Autowired
-    public EnrollmentService(EnrollmentRepository enrollmentRepository) {this.enrollmentRepository=enrollmentRepository;}
+    public EnrollmentService(EnrollmentRepository enrollmentRepository,LevelService levelService) {
+        this.enrollmentRepository=enrollmentRepository;
+        this.levelService=levelService;
+    }
 
     public List<EnrollmentEntity> findAll(){return enrollmentRepository.findAll();}
 
@@ -51,4 +59,23 @@ public class EnrollmentService {
         return enrollmentRepository.save(enrollment);
     }
 
+    public Optional<EnrollmentEntity> getEnrollmentByPlanAndCustomer(LoyaltyPlanEntity plan, CustomerEntity customer) {
+        return enrollmentRepository.findByPlanAndCustomer(plan, customer);
+    }
+
+    public EnrollmentEntity upgradeLevel(CustomerEntity customer, LoyaltyPlanEntity plan, Integer levelId) {
+        EnrollmentEntity enrollment=this.getEnrollmentByPlanAndCustomer(plan,customer)
+                .orElseThrow(()->new IllegalArgumentException("customer or plan not found"));
+        if(enrollment instanceof LevelEnrollment levelEnrollment)
+        {
+            LevelEntity level=levelService.findById(levelId);
+            if(levelEnrollment.getPoints()>=level.getRequiredPoints())
+            {
+                levelEnrollment.setCurrentLevel(level);
+                this.save(levelEnrollment);
+                return enrollment;
+            }else throw new IllegalArgumentException("insufficient points");
+        }
+        return enrollment;
+    }
 }
