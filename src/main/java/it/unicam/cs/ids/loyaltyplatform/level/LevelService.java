@@ -1,6 +1,5 @@
 package it.unicam.cs.ids.loyaltyplatform.level;
 
-import it.unicam.cs.ids.loyaltyplatform.customer.CustomerEntity;
 import it.unicam.cs.ids.loyaltyplatform.loyaltyPlan.LevelLoyaltyPlan;
 import it.unicam.cs.ids.loyaltyplatform.loyaltyPlan.LoyaltyPlanEntity;
 import it.unicam.cs.ids.loyaltyplatform.loyaltyPlan.LoyaltyPlanService;
@@ -26,11 +25,6 @@ public class LevelService {
         return levelRepository.findById(id)
                 .orElseThrow(()-> new NoSuchElementException("level not found with id: "+id));
     }
-    /*
-    TODO: controlli se piano è a livelli, lanciare eccezione se non lo è.
-          Se il cliente aggiunge livello in fondo alla lista va fatto un controllo
-          per next level
-     */
 
     public void addLevelToPlan(Integer planId, LevelEntity level) {
         LoyaltyPlanEntity plan = loyaltyPlanService.findById(planId);
@@ -38,6 +32,8 @@ public class LevelService {
         {
             LevelLoyaltyPlan levelPlan = (LevelLoyaltyPlan) plan;
             level.setPlan(levelPlan);
+            //if(levelPlan.getBaseLevel()==null){levelPlan.setBaseLevel(level);}
+            levelPlan.getLevels().add(level);
             loyaltyPlanService.save(levelPlan);
         }
     }

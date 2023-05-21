@@ -1,7 +1,5 @@
 package it.unicam.cs.ids.loyaltyplatform.level;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIdentityReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import it.unicam.cs.ids.loyaltyplatform.loyaltyPlan.LevelLoyaltyPlan;
 import jakarta.persistence.*;
@@ -15,13 +13,12 @@ public class LevelEntity {
     private String name;
     private int requiredPoints;
     private double discountPercentage;
-    @ManyToOne
-    private LevelEntity nextLevel;
 
     @ManyToOne
     @JsonIgnore
     private LevelLoyaltyPlan plan;
 
+    private Boolean baseLevel;
     public LevelEntity(String name, int requiredPoints, double discountPercentage, LevelLoyaltyPlan plan) {
         this.name = name;
         this.requiredPoints = requiredPoints;
@@ -62,11 +59,11 @@ public class LevelEntity {
         return plan;
     }
 
-    public LevelEntity getNextLevel() {
-        return nextLevel;
+    public Boolean getBaseLevel() {
+        return baseLevel;
     }
 
-    public void setNextLevel(LevelEntity nextLevel) {
-        this.nextLevel = nextLevel;
+    public void setBaseLevel(Boolean baseLevel) {
+        this.baseLevel = baseLevel;
     }
 }
