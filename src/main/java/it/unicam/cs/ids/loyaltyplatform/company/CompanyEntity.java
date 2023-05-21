@@ -1,5 +1,7 @@
 package it.unicam.cs.ids.loyaltyplatform.company;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import it.unicam.cs.ids.loyaltyplatform.loyaltyPlan.LoyaltyPlanEntity;
 import it.unicam.cs.ids.loyaltyplatform.transaction.TransactionEntity;
 import jakarta.persistence.*;
@@ -17,15 +19,18 @@ public class CompanyEntity {
     private Integer id;
     private String name;
     private String emailAddress;
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+    private String password;
     @OneToMany (mappedBy = "company", cascade =  CascadeType.ALL)
     private List<LoyaltyPlanEntity> loyaltyPlans=new ArrayList<>();
 
     @OneToMany
     private List<TransactionEntity> transactions;
 
-    public CompanyEntity( String name, String emailAddress) {
+    public CompanyEntity( String name, String emailAddress, String password) {
         this.name = name;
         this.emailAddress = emailAddress;
+        this.password=password;
     }
 
     public CompanyEntity() {
@@ -42,6 +47,10 @@ public class CompanyEntity {
     public String getEmailAddress() {
         return emailAddress;
     }
+
+    public String getPassword() {return password;}
+
+    public void setPassword(String password) {this.password = password;}
 
     public void setName(String name) {
         this.name = name;

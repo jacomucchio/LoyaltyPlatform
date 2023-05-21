@@ -1,6 +1,7 @@
 package it.unicam.cs.ids.loyaltyplatform.customer;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import it.unicam.cs.ids.loyaltyplatform.card.CardEntity;
 import it.unicam.cs.ids.loyaltyplatform.enrollment.EnrollmentEntity;
 import jakarta.persistence.*;
@@ -29,6 +30,8 @@ public class CustomerEntity {
     private String emailAddress;
     private String phoneNumber;
     private LocalDate birthDate;
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+    private String password;
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "card_id")
@@ -38,12 +41,13 @@ public class CustomerEntity {
     @JsonIgnore
     private List<EnrollmentEntity> enrollments = new ArrayList<>();
 
-    public CustomerEntity(String name, String surname, String emailAddress, String phoneNumber, LocalDate birthDate) {
+    public CustomerEntity(String name, String surname, String emailAddress, String phoneNumber, LocalDate birthDate, String password) {
         this.name = name;
         this.surname = surname;
         this.emailAddress = emailAddress;
         this.phoneNumber = phoneNumber;
         this.birthDate = birthDate;
+        this.password = password;
     }
 
     public CustomerEntity() {
@@ -76,6 +80,10 @@ public class CustomerEntity {
     public LocalDate getBirthDate() {
         return birthDate;
     }
+
+    public String getPassword() {return password; }
+
+    public void setPassword(String password) {this.password = password; }
 
     public void setName(String name) {
         this.name = name;

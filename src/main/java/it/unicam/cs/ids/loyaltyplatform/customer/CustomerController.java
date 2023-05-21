@@ -29,7 +29,7 @@ public class CustomerController {
     {
         return customerService.findById(id);
     }
-    @PostMapping("/customer")
+    @PostMapping("/customer/register")
     public void save(@RequestBody CustomerEntity customer)
     {
         customerService.save(customer);
