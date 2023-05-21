@@ -24,9 +24,11 @@ public class CompanyController {
     public CompanyEntity getCompanyById(@PathVariable Integer id){
         return this.companyService.getCompanyById(id);
     }
+
+    //prima si chiamava addNewCompany ho messo saveCompany per rimanere in linea con gli altri controller
     @PostMapping("/company/register")
-    public void registerNewCompany(@RequestBody CompanyEntity company){
-        this.companyService.addNewCompany(company);
+    public void saveCompany(@RequestBody CompanyEntity company){
+        this.companyService.saveCompany(company);
     }
 
     @DeleteMapping("/company/delete/{id}")

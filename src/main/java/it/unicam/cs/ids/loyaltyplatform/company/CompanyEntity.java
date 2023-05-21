@@ -1,5 +1,6 @@
 package it.unicam.cs.ids.loyaltyplatform.company;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import it.unicam.cs.ids.loyaltyplatform.loyaltyPlan.LoyaltyPlanEntity;
 import it.unicam.cs.ids.loyaltyplatform.transaction.TransactionEntity;
 import jakarta.persistence.*;
@@ -18,6 +19,7 @@ public class CompanyEntity {
     private String name;
     private String emailAddress;
     @OneToMany (mappedBy = "company", cascade =  CascadeType.ALL)
+    @JsonManagedReference   //aggiunto per evitare problemi di  serializzazione infinita con l'entità: loyalty plan.
     private List<LoyaltyPlanEntity> loyaltyPlans=new ArrayList<>();
 
     @OneToMany
@@ -49,5 +51,21 @@ public class CompanyEntity {
 
     public void setEmailAddress(String emailAddress) {
         this.emailAddress = emailAddress;
+    }
+
+    public List<LoyaltyPlanEntity> getLoyaltyPlans() {
+        return loyaltyPlans;
+    }
+
+    public void setLoyaltyPlans(List<LoyaltyPlanEntity> loyaltyPlans) {
+        this.loyaltyPlans = loyaltyPlans;
+    }
+
+    public List<TransactionEntity> getTransactions() {
+        return transactions;
+    }
+
+    public void setTransactions(List<TransactionEntity> transactions) {
+        this.transactions = transactions;
     }
 }

@@ -1,5 +1,6 @@
 package it.unicam.cs.ids.loyaltyplatform.loyaltyPlan;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
@@ -37,6 +38,7 @@ public abstract class LoyaltyPlanEntity {
     private int customerCount;
     @ManyToOne
     @JoinColumn(name = "company_id")
+    @JsonBackReference                  ////aggiunto per evitare problemi di  serializzazione infinita con l'entità:company.
     private CompanyEntity company;
 
     @OneToMany(mappedBy="plan")

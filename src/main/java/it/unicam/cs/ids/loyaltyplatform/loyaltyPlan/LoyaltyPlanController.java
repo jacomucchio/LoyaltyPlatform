@@ -1,26 +1,24 @@
 package it.unicam.cs.ids.loyaltyplatform.loyaltyPlan;
 
-import it.unicam.cs.ids.loyaltyplatform.loyaltyPlan.LoyaltyPlanEntity;
 import it.unicam.cs.ids.loyaltyplatform.company.CompanyService;
-import it.unicam.cs.ids.loyaltyplatform.loyaltyPlan.LoyaltyPlanService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-//TODO ho cambiato requestmapping da /loyaltyplans a /api, non so se va bene
+
 @RestController
 @RequestMapping("/api")
 public class LoyaltyPlanController {
     private final LoyaltyPlanService loyaltyPlanService;
+    private final CompanyService companyService;
 
     @Autowired
-    public LoyaltyPlanController(LoyaltyPlanService loyaltyPlanService) {
+    public LoyaltyPlanController(LoyaltyPlanService loyaltyPlanService, CompanyService companyService) {
         this.loyaltyPlanService = loyaltyPlanService;
+        this.companyService = companyService;
     }
 
-    @Autowired
-    private CompanyService companyService;
 
     @GetMapping("/loyalty-plan")
     public List<LoyaltyPlanEntity> findAll() {
@@ -38,7 +36,6 @@ public class LoyaltyPlanController {
         LoyaltyPlanEntity newPlan = loyaltyPlanService.createLoyaltyPlan(companyId, loyaltyPlan);
         return ResponseEntity.ok(newPlan);
     }
-
     @DeleteMapping("/loyalty-plan{id}")
     public void deleteById(@PathVariable Integer id) {
         loyaltyPlanService.deleteById(id);
