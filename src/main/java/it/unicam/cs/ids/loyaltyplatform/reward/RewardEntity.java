@@ -1,6 +1,7 @@
 package it.unicam.cs.ids.loyaltyplatform.reward;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import it.unicam.cs.ids.loyaltyplatform.enrollment.PointEnrollment;
 import it.unicam.cs.ids.loyaltyplatform.loyaltyPlan.PointLoyaltyPlan;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.DecimalMax;
@@ -8,7 +9,8 @@ import jakarta.validation.constraints.DecimalMin;
 import jakarta.validation.constraints.Future;
 import jakarta.validation.constraints.NotNull;
 import org.springframework.validation.annotation.Validated;
-
+import java.util.ArrayList;
+import java.util.List;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
@@ -36,6 +38,9 @@ public class RewardEntity {
     @JoinColumn(name = "loyalty_plan_id")
     @JsonIgnore
     private PointLoyaltyPlan pointLoyaltyPlan;
+
+    @ManyToMany(mappedBy = "obtainedRewards")
+    private List<PointEnrollment> redeemedByCustomer;
     public RewardEntity(@NotNull BigDecimal discountPercentage, @NotNull Integer requiredPoints, @NotNull LocalDate expirationDate) {
         this.discountPercentage = discountPercentage;
         this.expirationDate = expirationDate;

@@ -1,10 +1,14 @@
 package it.unicam.cs.ids.loyaltyplatform.enrollment;
 
 import it.unicam.cs.ids.loyaltyplatform.customer.CustomerEntity;
+import it.unicam.cs.ids.loyaltyplatform.customer.CustomerRepository;
 import it.unicam.cs.ids.loyaltyplatform.level.LevelEntity;
 import it.unicam.cs.ids.loyaltyplatform.level.LevelService;
 import it.unicam.cs.ids.loyaltyplatform.loyaltyPlan.*;
 import it.unicam.cs.ids.loyaltyplatform.loyaltyPlan.LevelLoyaltyPlan;
+import it.unicam.cs.ids.loyaltyplatform.reward.RewardEntity;
+import it.unicam.cs.ids.loyaltyplatform.reward.RewardService;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,11 +20,13 @@ import java.util.Optional;
 public class EnrollmentService {
     private final EnrollmentRepository enrollmentRepository;
     private final LevelService levelService;
+    private final RewardService rewardService;
 
     @Autowired
-    public EnrollmentService(EnrollmentRepository enrollmentRepository,LevelService levelService) {
+    public EnrollmentService(EnrollmentRepository enrollmentRepository, LevelService levelService,  RewardService rewardService) {
         this.enrollmentRepository=enrollmentRepository;
         this.levelService=levelService;
+        this.rewardService = rewardService;
     }
 
     public List<EnrollmentEntity> findAll(){return enrollmentRepository.findAll();}
@@ -78,4 +84,23 @@ public class EnrollmentService {
         }
         return enrollment;
     }
+
+    @Transactional
+    public EnrollmentEntity redeemReward(Integer enrollmentId, Integer rewardId) {
+        EnrollmentEntity enrollment = this.findById(enrollmentId);
+        RewardEntity reward = rewardService.getRewardById(rewardId);
+
+        if (!(enrollment instanceof PointEnrollment)) {
+            throw new RuntimeException("Enrollment type not valid");
+        }
+        PointEnrollment pointEnrollment = (PointEnrollment) enrollment;
+
+        if (pointEnrollment.getPoints() >= reward.getRequiredPoints()){
+            pointEnrollment.getObtainedRewards().add(reward);
+            pointEnrollment.setPoints(pointEnrollment.getPoints() - reward.getRequiredPoints());
+            this.save(pointEnrollment);
+            return pointEnrollment;
+        }else throw new IllegalArgumentException("Insufficient point to redeem reward");
+    }
+
 }
