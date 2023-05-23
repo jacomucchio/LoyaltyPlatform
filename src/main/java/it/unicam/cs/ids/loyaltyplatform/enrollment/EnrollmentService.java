@@ -1,7 +1,6 @@
 package it.unicam.cs.ids.loyaltyplatform.enrollment;
 
 import it.unicam.cs.ids.loyaltyplatform.customer.CustomerEntity;
-import it.unicam.cs.ids.loyaltyplatform.customer.CustomerRepository;
 import it.unicam.cs.ids.loyaltyplatform.level.LevelEntity;
 import it.unicam.cs.ids.loyaltyplatform.level.LevelService;
 import it.unicam.cs.ids.loyaltyplatform.loyaltyPlan.*;
@@ -91,7 +90,7 @@ public class EnrollmentService {
         RewardEntity reward = rewardService.getRewardById(rewardId);
 
         if (!(enrollment instanceof PointEnrollment)) {
-            throw new RuntimeException("Enrollment type not valid");
+            throw new IllegalArgumentException("Enrollment type not valid");
         }
         PointEnrollment pointEnrollment = (PointEnrollment) enrollment;
 

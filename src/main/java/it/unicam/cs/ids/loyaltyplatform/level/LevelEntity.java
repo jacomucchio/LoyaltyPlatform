@@ -18,7 +18,6 @@ public class LevelEntity {
     @JsonIgnore
     private LevelLoyaltyPlan plan;
 
-    private Boolean baseLevel;
     public LevelEntity(String name, int requiredPoints, double discountPercentage, LevelLoyaltyPlan plan) {
         this.name = name;
         this.requiredPoints = requiredPoints;
@@ -59,11 +58,4 @@ public class LevelEntity {
         return plan;
     }
 
-    public Boolean getBaseLevel() {
-        return baseLevel;
-    }
-
-    public void setBaseLevel(Boolean baseLevel) {
-        this.baseLevel = baseLevel;
-    }
 }

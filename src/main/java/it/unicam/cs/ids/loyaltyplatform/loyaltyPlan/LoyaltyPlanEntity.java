@@ -38,7 +38,7 @@ public abstract class LoyaltyPlanEntity {
     private int customerCount;
     @ManyToOne
     @JoinColumn(name = "company_id")
-    @JsonBackReference                  ////aggiunto per evitare problemi di  serializzazione infinita con l'entità:company.
+    @JsonBackReference
     private CompanyEntity company;
 
     @OneToMany(mappedBy="plan")

@@ -40,12 +40,6 @@ public class CustomerController {
     {
         customerService.deleteById(id);
     }
-
-    /*
-    TODO : - il metodo per la creazione del piano dovrebbe essere gestito dal controller di EnrollmentEntity e non
-             dal controller di Customer. /api/customer/{customerId}/enroll-to-plan/{planId}
-     */
-
     @PostMapping("/customer/{customerId}/add-plan/{planId}")
     public ResponseEntity<String> addLoyaltyPlan(@PathVariable Integer customerId, @PathVariable Integer planId) {
         customerService.addLoyaltyPlan(customerId,planId);

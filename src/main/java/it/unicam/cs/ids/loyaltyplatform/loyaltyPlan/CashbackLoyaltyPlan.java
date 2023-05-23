@@ -4,7 +4,7 @@ import it.unicam.cs.ids.loyaltyplatform.transaction.TransactionEntity;
 import it.unicam.cs.ids.loyaltyplatform.enrollment.EnrollmentEntity;
 import jakarta.persistence.DiscriminatorValue;
 import jakarta.persistence.Entity;
-//TODO METTERE COSTRUTTORE, INSERIRLO CORRETTAMENTE
+
 @Entity
 @DiscriminatorValue("cashback")
 public class CashbackLoyaltyPlan extends LoyaltyPlanEntity {

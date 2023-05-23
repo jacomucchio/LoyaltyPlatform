@@ -43,18 +43,5 @@ public class CompanyService {
         this.companyRepository.deleteById(id);
     }
 
-
-
-//        public LoyaltyPlanEntity getLoyaltyPlanById(Integer companyId, Integer planId) {
-//            CompanyEntity company = getCompanyById(companyId);
-//
-//            List<LoyaltyPlanEntity> loyaltyPlans = company.getLoyaltyPlans();
-//            for (LoyaltyPlanEntity loyaltyPlan : loyaltyPlans) {
-//                if (loyaltyPlan.getId().equals(planId)) {
-//                    return loyaltyPlan;
-//                }
-//            }
-//            throw new IllegalArgumentException("Loyalty plan not found with ID: " + planId);
-//        }
     }
 

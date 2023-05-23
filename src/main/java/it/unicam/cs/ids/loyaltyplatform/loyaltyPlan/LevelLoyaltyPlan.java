@@ -2,9 +2,7 @@ package it.unicam.cs.ids.loyaltyplatform.loyaltyPlan;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import it.unicam.cs.ids.loyaltyplatform.enrollment.LevelEnrollment;
-import it.unicam.cs.ids.loyaltyplatform.enrollment.PointEnrollment;
 import it.unicam.cs.ids.loyaltyplatform.level.LevelEntity;
-import it.unicam.cs.ids.loyaltyplatform.loyaltyPlan.LoyaltyPlanEntity;
 import it.unicam.cs.ids.loyaltyplatform.transaction.TransactionEntity;
 import it.unicam.cs.ids.loyaltyplatform.enrollment.EnrollmentEntity;
 import jakarta.persistence.*;
@@ -34,10 +32,8 @@ public class LevelLoyaltyPlan extends LoyaltyPlanEntity {
     @Override
     public EnrollmentEntity applyBenefits(EnrollmentEntity enrollment, TransactionEntity transactionEntity) {
         LevelEnrollment levelEnrollment = (LevelEnrollment) enrollment;
-        //aggiunge i punti
         levelEnrollment.setPoints(levelEnrollment.getPoints() +
                 (int) (transactionEntity.getAmount() / conversionRate));
-        //applica lo sconto
         double cashbackAmount = (transactionEntity.getAmount() * levelEnrollment.
                 getCurrentLevel().getDiscountPercentage()) / 100;
         transactionEntity.setAmount(transactionEntity.getAmount()-cashbackAmount);

@@ -5,17 +5,12 @@ import it.unicam.cs.ids.loyaltyplatform.loyaltyPlan.PointLoyaltyPlan;
 import it.unicam.cs.ids.loyaltyplatform.reward.RewardEntity;
 import jakarta.persistence.*;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Entity
 @DiscriminatorValue("point")
 public class PointEnrollment extends EnrollmentEntity{
     private int points;
-    /*
-        TODO Fai controlli sui rewards
-     */
-
     @ManyToMany
     @JoinTable(
             name = "obtainedRewards",

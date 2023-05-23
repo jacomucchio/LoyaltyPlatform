@@ -1,7 +1,6 @@
 package it.unicam.cs.ids.loyaltyplatform.company;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import it.unicam.cs.ids.loyaltyplatform.loyaltyPlan.LoyaltyPlanEntity;
 import it.unicam.cs.ids.loyaltyplatform.transaction.TransactionEntity;
@@ -23,7 +22,7 @@ public class CompanyEntity {
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private String password;
     @OneToMany (mappedBy = "company", cascade =  CascadeType.ALL)
-    @JsonManagedReference   //aggiunto per evitare problemi di  serializzazione infinita con l'entità: loyalty plan.
+    @JsonManagedReference
     private List<LoyaltyPlanEntity> loyaltyPlans=new ArrayList<>();
 
     @OneToMany

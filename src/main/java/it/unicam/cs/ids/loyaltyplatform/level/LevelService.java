@@ -32,7 +32,6 @@ public class LevelService {
         {
             LevelLoyaltyPlan levelPlan = (LevelLoyaltyPlan) plan;
             level.setPlan(levelPlan);
-            //if(levelPlan.getBaseLevel()==null){levelPlan.setBaseLevel(level);}
             levelPlan.getLevels().add(level);
             loyaltyPlanService.save(levelPlan);
         }

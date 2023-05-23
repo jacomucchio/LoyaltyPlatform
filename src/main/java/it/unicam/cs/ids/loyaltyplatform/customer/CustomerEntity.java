@@ -14,7 +14,6 @@ import java.util.List;
 @Table(name = "customer")
 public class CustomerEntity {
     @Id
-    //@GeneratedValue(strategy = GenerationType.AUTO)
     @SequenceGenerator(
             name = "customer_sequence",
             sequenceName = "customer_sequence",

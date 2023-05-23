@@ -1,10 +1,6 @@
 package it.unicam.cs.ids.loyaltyplatform.company;
-
-import it.unicam.cs.ids.loyaltyplatform.company.CompanyEntity;
-import it.unicam.cs.ids.loyaltyplatform.company.CompanyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
 
 @RestController
@@ -15,8 +11,7 @@ public class CompanyController {
     public CompanyController(CompanyService companyService) {
         this.companyService = companyService;
     }
-
-    @GetMapping("/company")
+    @GetMapping("/companies")
     public List<CompanyEntity> getCompanies(){
         return this.companyService.getCompanies();
     }
@@ -24,8 +19,6 @@ public class CompanyController {
     public CompanyEntity getCompanyById(@PathVariable Integer id){
         return this.companyService.getCompanyById(id);
     }
-
-    //prima si chiamava addNewCompany ho messo saveCompany per rimanere in linea con gli altri controller
     @PostMapping("/company/register")
     public void saveCompany(@RequestBody CompanyEntity company){
         this.companyService.saveCompany(company);

@@ -5,12 +5,6 @@ import it.unicam.cs.ids.loyaltyplatform.company.CompanyEntity;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
-/*
-TODO: -finire di implementare l'entità.
-      -Finire di implementare la relazione fra tessera e transazione
-      -Finire di implementare la relazione fra azienda e transazione
-      -rivedere costruttori, getter&setters
- */
 
 @Entity
 @Table(name = "transaction")

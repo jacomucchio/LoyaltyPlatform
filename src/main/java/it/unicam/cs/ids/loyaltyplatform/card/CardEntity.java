@@ -7,11 +7,6 @@ import jakarta.persistence.*;
 import java.time.LocalDate;
 import java.util.List;
 
-/*
-TODO: -finire di implementare l'entità.
-      -Finire di implementare la relazione fra carta e proprietario
-      -rivedere costruttori, getter&setters
- */
 @Entity
 @Table(name = "card")
 public class CardEntity {
@@ -44,4 +39,7 @@ public class CardEntity {
         return cardOwner;
     }
 
+    public List<TransactionEntity> getTransactions() {
+        return transactions;
+    }
 }
