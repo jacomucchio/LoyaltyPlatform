@@ -37,7 +37,7 @@ public class RewardController {
     @PostMapping("/company/{companyId}/loyalty-plan/{planId}/reward/add")
     public ResponseEntity<LoyaltyPlanEntity> addRewardToPlan(@PathVariable Integer companyId, @PathVariable Integer planId,
                                                              @Valid @RequestBody  RewardEntity rewardEntity){
-        loyaltyPlanService.addRewardToPlan(companyId, planId, rewardEntity);
+        rewardService.addRewardToPlan(companyId, planId, rewardEntity);
         return ResponseEntity.ok().build();
     }
 

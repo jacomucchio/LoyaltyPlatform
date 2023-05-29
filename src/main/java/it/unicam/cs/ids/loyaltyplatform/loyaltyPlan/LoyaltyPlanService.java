@@ -50,20 +50,5 @@ public class LoyaltyPlanService {
         return loyaltyPlanRepository.findByCompanyId(id);
     }
 
-    public void addRewardToPlan(Integer companyId, Integer planId, RewardEntity rewardEntity) {
-        CompanyEntity company = companyRepository.findById(companyId).orElseThrow(() ->
-                new IllegalArgumentException("Company not found with id " + companyId));
 
-        LoyaltyPlanEntity loyaltyPlan = loyaltyPlanRepository.findById(planId)
-                .orElseThrow(() -> new NoSuchElementException("Loyalty plan not found with id: " + planId));
-
-        if (loyaltyPlan instanceof PointLoyaltyPlan) {
-            PointLoyaltyPlan pointLoyaltyPlan = (PointLoyaltyPlan) loyaltyPlan;
-            pointLoyaltyPlan.addReward(rewardEntity);
-            companyRepository.save(company);
-            loyaltyPlanRepository.save(loyaltyPlan);
-        } else {
-            throw new IllegalArgumentException("Invalid loyalty plan type.");
-        }
-    }
 }

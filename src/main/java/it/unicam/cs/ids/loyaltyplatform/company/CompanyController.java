@@ -23,6 +23,8 @@ public class CompanyController {
     public void saveCompany(@RequestBody CompanyEntity company){
         this.companyService.saveCompany(company);
     }
+    @PostMapping
+    public void save(@RequestBody CompanyEntity company){this.companyService.save(company);}
 
     @DeleteMapping("/company/delete/{id}")
     public void deleteCompany(@PathVariable Integer id){

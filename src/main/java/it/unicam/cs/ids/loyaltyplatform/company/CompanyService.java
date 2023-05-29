@@ -38,10 +38,11 @@ public class CompanyService {
         company.setPassword(encodedPassword);
         this.companyRepository.save(company);
     }
+    public void save(CompanyEntity company) {companyRepository.save(company);}
 
     public void deleteCompany(Integer id) {
         this.companyRepository.deleteById(id);
     }
 
-    }
+}
 
