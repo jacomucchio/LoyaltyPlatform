@@ -42,9 +42,9 @@ public class TransactionController {
         transactionService.deleteById(id);
     }
 
-    @PostMapping("/transaction/card/{cardId}/validate/company/{companyId}/amount/{amount}")
+    @PostMapping("/transaction/card/{cardId}/validate/company/{companyId}/amount")
     public ResponseEntity<TransactionEntity> validateTransaction(@PathVariable Integer companyId, @PathVariable Integer cardId,
-                                              @PathVariable double amount)
+                                              @RequestParam double amount)
     {
         CompanyEntity company = companyService.getCompanyById(companyId);
         CardEntity card = cardService.getCardById(cardId);

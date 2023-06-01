@@ -1,5 +1,6 @@
 package it.unicam.cs.ids.loyaltyplatform.transaction;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import it.unicam.cs.ids.loyaltyplatform.card.CardEntity;
 import it.unicam.cs.ids.loyaltyplatform.company.CompanyEntity;
 import jakarta.persistence.*;
@@ -17,10 +18,12 @@ public class TransactionEntity {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "card_id")
+    @JsonIgnore
     private CardEntity customerCard;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "company_id")
+    @JsonIgnore
     private CompanyEntity company;
 
     public TransactionEntity() {
