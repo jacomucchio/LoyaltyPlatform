@@ -1,4 +1,5 @@
 package it.unicam.cs.ids.loyaltyplatform.company;
+import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
@@ -40,6 +41,8 @@ public class CompanyService {
     public void save(CompanyEntity company) {companyRepository.save(company);}
 
     public void deleteCompany(Integer id) {
+        CompanyEntity company = companyRepository.findById(id)
+                .orElseThrow(() -> new EntityNotFoundException("Company id not found: " + id));
         this.companyRepository.deleteById(id);
     }
 

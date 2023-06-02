@@ -1,5 +1,7 @@
 package it.unicam.cs.ids.loyaltyplatform.company;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
@@ -27,9 +29,9 @@ public class CompanyController {
     public void save(@RequestBody CompanyEntity company){this.companyService.save(company);}
 
     @DeleteMapping("/company/delete/{id}")
-    public void deleteCompany(@PathVariable Integer id){
+    public ResponseEntity<String> deleteCompany(@PathVariable Integer id){
         this.companyService.deleteCompany(id);
+        return ResponseEntity.status(HttpStatus.OK).body("Company deleted successfully");
     }
-
-
+    
 }
