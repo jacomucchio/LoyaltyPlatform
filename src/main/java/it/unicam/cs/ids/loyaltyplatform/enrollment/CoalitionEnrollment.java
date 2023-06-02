@@ -1,5 +1,4 @@
 package it.unicam.cs.ids.loyaltyplatform.enrollment;
-
 import it.unicam.cs.ids.loyaltyplatform.loyaltyPlan.CoalitionLoyaltyPlan;
 import it.unicam.cs.ids.loyaltyplatform.customer.CustomerEntity;
 import jakarta.persistence.DiscriminatorValue;

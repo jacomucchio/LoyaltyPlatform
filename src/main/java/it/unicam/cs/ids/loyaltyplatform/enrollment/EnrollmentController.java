@@ -1,11 +1,8 @@
 package it.unicam.cs.ids.loyaltyplatform.enrollment;
 
 import it.unicam.cs.ids.loyaltyplatform.customer.CustomerEntity;
-import it.unicam.cs.ids.loyaltyplatform.level.LevelService;
 import it.unicam.cs.ids.loyaltyplatform.loyaltyPlan.LoyaltyPlanEntity;
-import it.unicam.cs.ids.loyaltyplatform.enrollment.EnrollmentEntity;
 import it.unicam.cs.ids.loyaltyplatform.customer.CustomerService;
-import it.unicam.cs.ids.loyaltyplatform.enrollment.EnrollmentService;
 import it.unicam.cs.ids.loyaltyplatform.loyaltyPlan.LoyaltyPlanService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;

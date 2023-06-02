@@ -1,14 +1,11 @@
 package it.unicam.cs.ids.loyaltyplatform.customer;
-
 import it.unicam.cs.ids.loyaltyplatform.card.CardEntity;
-import it.unicam.cs.ids.loyaltyplatform.company.CompanyEntity;
 import it.unicam.cs.ids.loyaltyplatform.loyaltyPlan.LoyaltyPlanEntity;
 import it.unicam.cs.ids.loyaltyplatform.enrollment.EnrollmentEntity;
 import it.unicam.cs.ids.loyaltyplatform.loyaltyPlan.LoyaltyPlanRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Optional;

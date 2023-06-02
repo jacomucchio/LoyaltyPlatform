@@ -3,8 +3,6 @@ import it.unicam.cs.ids.loyaltyplatform.card.CardEntity;
 import it.unicam.cs.ids.loyaltyplatform.company.CompanyEntity;
 import it.unicam.cs.ids.loyaltyplatform.card.CardService;
 import it.unicam.cs.ids.loyaltyplatform.company.CompanyService;
-import it.unicam.cs.ids.loyaltyplatform.transaction.TransactionEntity;
-import it.unicam.cs.ids.loyaltyplatform.transaction.TransactionService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 

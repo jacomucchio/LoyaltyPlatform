@@ -1,5 +1,4 @@
 package it.unicam.cs.ids.loyaltyplatform.card;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
@@ -18,4 +17,6 @@ public class CardService {
         return this.cardRepository.findById(id).
                 orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
     }
+
+    public void save(CardEntity cardEntity){cardRepository.save(cardEntity);}
 }

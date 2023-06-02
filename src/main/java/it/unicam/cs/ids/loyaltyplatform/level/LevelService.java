@@ -1,5 +1,4 @@
 package it.unicam.cs.ids.loyaltyplatform.level;
-
 import it.unicam.cs.ids.loyaltyplatform.loyaltyPlan.LevelLoyaltyPlan;
 import it.unicam.cs.ids.loyaltyplatform.loyaltyPlan.LoyaltyPlanEntity;
 import it.unicam.cs.ids.loyaltyplatform.loyaltyPlan.LoyaltyPlanService;
@@ -36,5 +35,7 @@ public class LevelService {
             loyaltyPlanService.save(levelPlan);
         }
     }
+
+    public void save(LevelEntity levelEntity){levelRepository.save(levelEntity);}
 
 }
