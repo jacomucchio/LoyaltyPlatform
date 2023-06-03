@@ -3,6 +3,7 @@ package it.unicam.cs.ids.loyaltyplatform.customer;
 import it.unicam.cs.ids.loyaltyplatform.enrollment.EnrollmentEntity;
 import it.unicam.cs.ids.loyaltyplatform.enrollment.EnrollmentService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -35,10 +36,10 @@ public class CustomerController {
     {
         customerService.save(customer);
     }
-    @DeleteMapping("/customer/{id}")
-    public void deleteById(@PathVariable Integer id)
-    {
-        customerService.deleteById(id);
+    @DeleteMapping("/customer/delete/{id}")
+    public ResponseEntity<String> deleteCustomer(@PathVariable Integer id){
+        this.customerService.deleteCustomer(id);
+        return ResponseEntity.status(HttpStatus.OK).body("Customer deleted successfully");
     }
     @PostMapping("/customer/{customerId}/add-plan/{planId}")
     public ResponseEntity<String> addLoyaltyPlan(@PathVariable Integer customerId, @PathVariable Integer planId) {

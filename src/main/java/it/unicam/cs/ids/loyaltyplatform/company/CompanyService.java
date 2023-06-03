@@ -42,7 +42,7 @@ public class CompanyService {
 
     public void deleteCompany(Integer id) {
         CompanyEntity company = companyRepository.findById(id)
-                .orElseThrow(() -> new EntityNotFoundException("Company id not found: " + id));
+                .orElseThrow(() -> new EntityNotFoundException("Company with id " + id + " not found: "));
         this.companyRepository.deleteById(id);
     }
 

@@ -1,8 +1,10 @@
 package it.unicam.cs.ids.loyaltyplatform.customer;
 import it.unicam.cs.ids.loyaltyplatform.card.CardEntity;
+import it.unicam.cs.ids.loyaltyplatform.company.CompanyEntity;
 import it.unicam.cs.ids.loyaltyplatform.loyaltyPlan.LoyaltyPlanEntity;
 import it.unicam.cs.ids.loyaltyplatform.enrollment.EnrollmentEntity;
 import it.unicam.cs.ids.loyaltyplatform.loyaltyPlan.LoyaltyPlanRepository;
+import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -48,11 +50,6 @@ public class CustomerService {
         customerEntity.setCard(card);
         customerRepository.save(customerEntity);
     }
-
-    public void deleteById(Integer id){
-        customerRepository.deleteById(id);
-    }
-
     public void addLoyaltyPlan(Integer customerId, Integer planId)
     {
         CustomerEntity customer=customerRepository.findById(customerId)
@@ -66,6 +63,12 @@ public class CustomerService {
     public List<EnrollmentEntity> findEnrollments(Integer customerId)
     {
         return customerRepository.findById(customerId).get().getEnrollments();
+    }
+
+    public void deleteCustomer(Integer id) {
+        CustomerEntity customer = customerRepository.findById(id)
+                .orElseThrow(() -> new EntityNotFoundException("Customer with id " + id + " not found: "));
+        this.customerRepository.deleteById(id);
     }
 
 }
