@@ -1,6 +1,5 @@
 package it.unicam.cs.ids.loyaltyplatform.customer;
 import it.unicam.cs.ids.loyaltyplatform.card.CardEntity;
-import it.unicam.cs.ids.loyaltyplatform.company.CompanyEntity;
 import it.unicam.cs.ids.loyaltyplatform.loyaltyPlan.LoyaltyPlanEntity;
 import it.unicam.cs.ids.loyaltyplatform.enrollment.EnrollmentEntity;
 import it.unicam.cs.ids.loyaltyplatform.loyaltyPlan.LoyaltyPlanRepository;
