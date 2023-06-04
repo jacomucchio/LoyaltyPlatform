@@ -45,6 +45,6 @@ public class CompanyService {
                 .orElseThrow(() -> new EntityNotFoundException("Company with id " + id + " not found: "));
         this.companyRepository.deleteById(id);
     }
-
+    
 }
 

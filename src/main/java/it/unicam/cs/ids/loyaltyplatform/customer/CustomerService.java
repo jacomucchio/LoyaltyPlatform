@@ -5,6 +5,8 @@ import it.unicam.cs.ids.loyaltyplatform.enrollment.EnrollmentEntity;
 import it.unicam.cs.ids.loyaltyplatform.loyaltyPlan.LoyaltyPlanRepository;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import java.util.List;
@@ -68,6 +70,25 @@ public class CustomerService {
         CustomerEntity customer = customerRepository.findById(id)
                 .orElseThrow(() -> new EntityNotFoundException("Customer with id " + id + " not found: "));
         this.customerRepository.deleteById(id);
+    }
+
+    public CustomerEntity updateCustomer(Integer id, CustomerEntity updatedCustomer)
+    {
+        CustomerEntity existingCustomer = customerRepository.findByEmailAddress(updatedCustomer.getEmailAddress())
+                .orElse(null);
+        if (existingCustomer != null && !existingCustomer.getId().equals(id)) {
+            throw new IllegalArgumentException("Email already taken");
+        }
+        CustomerEntity customer = customerRepository.findById(id)
+                .orElseThrow(() -> new EntityNotFoundException("Customer with id " + id + " not found: "));
+        String encodedPassword = bCryptPasswordEncoder.encode(updatedCustomer.getPassword());
+        customer.setName(updatedCustomer.getName());
+        customer.setSurname(updatedCustomer.getSurname());
+        customer.setEmailAddress(updatedCustomer.getEmailAddress());
+        customer.setPhoneNumber(updatedCustomer.getPhoneNumber());
+        customer.setBirthDate(updatedCustomer.getBirthDate());
+        customer.setPassword(encodedPassword);
+        return customerRepository.save(customer);
     }
 
 }

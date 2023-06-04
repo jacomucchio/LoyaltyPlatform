@@ -58,5 +58,10 @@ public class CustomerController {
         return ResponseEntity.ok(enrollmentService.redeemReward(enrollmentId, rewardId));
 
     }
+    @PutMapping("/customer/{id}/update")
+    public ResponseEntity<CustomerEntity> updateCustomer(@PathVariable Integer id, @RequestBody CustomerEntity updatedCustomer) {
+        CustomerEntity customer = customerService.updateCustomer(id, updatedCustomer);
+        return ResponseEntity.ok(customer);
+    }
 
 }
