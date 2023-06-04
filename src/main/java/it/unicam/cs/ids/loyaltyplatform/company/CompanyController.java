@@ -33,5 +33,11 @@ public class CompanyController {
         this.companyService.deleteCompany(id);
         return ResponseEntity.status(HttpStatus.OK).body("Company deleted successfully");
     }
+
+    @PutMapping("/company/{id}/update")
+    public ResponseEntity<CompanyEntity> updateCompany(@PathVariable Integer id, @RequestBody CompanyEntity updatedCompany) {
+        CompanyEntity company = companyService.updateCompany(id, updatedCompany);
+        return ResponseEntity.ok(company);
+    }
     
 }

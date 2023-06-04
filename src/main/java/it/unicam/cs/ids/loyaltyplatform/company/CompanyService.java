@@ -45,6 +45,28 @@ public class CompanyService {
                 .orElseThrow(() -> new EntityNotFoundException("Company with id " + id + " not found: "));
         this.companyRepository.deleteById(id);
     }
-    
+
+    public CompanyEntity updateCompany(Integer id, CompanyEntity updatedCompany) {
+
+        CompanyEntity existingCompany = companyRepository.findByEmailAddress(updatedCompany.getEmailAddress())
+                .orElse(null);
+
+        if (existingCompany != null && !existingCompany.getId().equals(id))
+        {
+                throw new IllegalArgumentException("Email already taken");
+        }
+
+        CompanyEntity company = companyRepository.findById(id)
+                .orElseThrow(() -> new EntityNotFoundException("Company with id " + id + " not found"));
+
+        String encodedPassword = bCryptPasswordEncoder.encode(updatedCompany.getPassword());
+
+        company.setName(updatedCompany.getName());
+        company.setEmailAddress(updatedCompany.getEmailAddress());
+        company.setPassword(encodedPassword);
+
+        return companyRepository.save(company);
+    }
+
 }
 
