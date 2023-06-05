@@ -48,5 +48,9 @@ public class LoyaltyPlanService {
         return loyaltyPlanRepository.findByCompanyId(id);
     }
 
+    public LoyaltyPlanEntity findByIdAndCompanyId(Integer planId, Integer companyId) {
+        return loyaltyPlanRepository.findByIdAndCompany_Id(planId, companyId).
+                orElseThrow(()->new NoSuchElementException("Loyalty plan not found"));
+    }
 
 }

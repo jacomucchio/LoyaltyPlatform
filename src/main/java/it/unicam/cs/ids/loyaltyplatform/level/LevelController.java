@@ -21,6 +21,12 @@ public class LevelController {
         levelService.addLevelToPlan(planId, level);
         return ResponseEntity.status(HttpStatus.CREATED).body("level added successfully");
     }
+    @DeleteMapping("/company/{companyId}/plan/{planId}/delete-level/{levelId}")
+    public ResponseEntity<String> deleteLevelFromPlan(@PathVariable Integer companyId, @PathVariable Integer planId,
+                                                 @PathVariable Integer levelId) {
+        levelService.deleteLevel(companyId,planId,levelId);
+        return ResponseEntity.status(HttpStatus.CREATED).body("level removed");
+    }
 
 
 }
