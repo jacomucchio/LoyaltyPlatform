@@ -38,8 +38,8 @@ public class LevelService {
                 .orElseThrow(()-> new NoSuchElementException("level not found with id: "+id));
     }
 
-    public void addLevelToPlan(Integer planId, LevelEntity level) {
-        LoyaltyPlanEntity plan = loyaltyPlanService.findById(planId);
+    public void addLevelToPlan(Integer companyId, Integer planId, LevelEntity level) {
+        LoyaltyPlanEntity plan = loyaltyPlanService.findByIdAndCompanyId(planId, companyId);
         if(plan instanceof LevelLoyaltyPlan)
         {
             LevelLoyaltyPlan levelPlan = (LevelLoyaltyPlan) plan;

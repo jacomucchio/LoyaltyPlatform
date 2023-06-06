@@ -36,12 +36,12 @@ public class LoyaltyPlanController {
         LoyaltyPlanEntity newPlan = loyaltyPlanService.createLoyaltyPlan(companyId, loyaltyPlan);
         return ResponseEntity.ok(newPlan);
     }
-    @DeleteMapping("/loyalty-plan{id}")
+    @DeleteMapping("/loyalty-plan/delete/{id}")
     public void deleteById(@PathVariable Integer id) {
         loyaltyPlanService.deleteById(id);
     }
 
-    @GetMapping("/loyalty-plan{id}")
+    @GetMapping("/loyalty-plan/{id}")
     public void findById(@PathVariable Integer id) {
         loyaltyPlanService.findById(id);
     }

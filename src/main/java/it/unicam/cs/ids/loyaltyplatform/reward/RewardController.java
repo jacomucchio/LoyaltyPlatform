@@ -14,15 +14,14 @@ import java.util.List;
 @RequestMapping(path = "/api")
 public class RewardController {
     private final RewardService rewardService;
-    private final LoyaltyPlanService loyaltyPlanService;
 
     @Autowired
-    public RewardController(RewardService rewardService, LoyaltyPlanService loyaltyPlanService) {
+    public RewardController(RewardService rewardService) {
         this.rewardService = rewardService;
-        this.loyaltyPlanService = loyaltyPlanService;
+
     }
 
-    @GetMapping("/reward")
+    @GetMapping("/rewards")
     public List<RewardEntity> getRewards(){return this.rewardService.getRewards();}
 
 

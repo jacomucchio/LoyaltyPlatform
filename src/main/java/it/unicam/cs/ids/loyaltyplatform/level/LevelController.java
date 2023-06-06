@@ -16,9 +16,11 @@ public class LevelController {
     }
 
 
-    @PostMapping("/company/plan/{planId}/add-level")
-    public ResponseEntity<String> addLevelToPlan(@PathVariable Integer planId, @RequestBody LevelEntity level) {
-        levelService.addLevelToPlan(planId, level);
+    @PostMapping("/company/{companyId}/plan/{planId}/add-level")
+    public ResponseEntity<String> addLevelToPlan(@PathVariable Integer companyId,
+                                                 @PathVariable Integer planId,
+                                                 @RequestBody LevelEntity level) {
+        levelService.addLevelToPlan(companyId, planId, level);
         return ResponseEntity.status(HttpStatus.CREATED).body("level added successfully");
     }
     @DeleteMapping("/company/{companyId}/plan/{planId}/delete-level/{levelId}")

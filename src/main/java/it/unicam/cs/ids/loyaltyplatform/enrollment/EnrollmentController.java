@@ -4,7 +4,6 @@ import it.unicam.cs.ids.loyaltyplatform.customer.CustomerEntity;
 import it.unicam.cs.ids.loyaltyplatform.loyaltyPlan.LoyaltyPlanEntity;
 import it.unicam.cs.ids.loyaltyplatform.customer.CustomerService;
 import it.unicam.cs.ids.loyaltyplatform.loyaltyPlan.LoyaltyPlanService;
-import it.unicam.cs.ids.loyaltyplatform.reward.RewardEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.http.ResponseEntity;

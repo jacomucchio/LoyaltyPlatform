@@ -52,7 +52,7 @@ public class CustomerController {
         return ResponseEntity.ok(customerService.findEnrollments(customerId));
 
     }
-    @PostMapping("/customer/enrollments/{enrollmentId}/rewards/{rewardId}/redeem")
+    @PostMapping("/customer/enrollments/{enrollmentId}/reward/{rewardId}/redeem")
     public ResponseEntity<EnrollmentEntity> redeemReward(@PathVariable Integer enrollmentId,
                                                          @PathVariable Integer rewardId){
         return ResponseEntity.ok(enrollmentService.redeemReward(enrollmentId, rewardId));
