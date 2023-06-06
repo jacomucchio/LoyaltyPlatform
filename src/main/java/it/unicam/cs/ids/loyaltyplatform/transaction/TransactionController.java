@@ -3,10 +3,13 @@ import it.unicam.cs.ids.loyaltyplatform.card.CardEntity;
 import it.unicam.cs.ids.loyaltyplatform.company.CompanyEntity;
 import it.unicam.cs.ids.loyaltyplatform.card.CardService;
 import it.unicam.cs.ids.loyaltyplatform.company.CompanyService;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.NoSuchElementException;
+
 @RestController
 @RequestMapping("/api")
 public class TransactionController {
@@ -47,5 +50,14 @@ public class TransactionController {
         CompanyEntity company = companyService.getCompanyById(companyId);
         CardEntity card = cardService.getCardById(cardId);
         return ResponseEntity.ok(transactionService.validateTransaction(company, card, amount));
+    }
+    @ExceptionHandler(IllegalArgumentException.class)
+    public ResponseEntity<String> handleIllegalArgumentException(IllegalArgumentException ex) {
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(ex.getMessage());
+    }
+
+    @ExceptionHandler(NoSuchElementException.class)
+    public ResponseEntity<String> handleNoSuchElementException(NoSuchElementException ex) {
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(ex.getMessage());
     }
 }

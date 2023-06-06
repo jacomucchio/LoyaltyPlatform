@@ -1,5 +1,4 @@
 package it.unicam.cs.ids.loyaltyplatform.level;
-
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import it.unicam.cs.ids.loyaltyplatform.loyaltyPlan.LevelLoyaltyPlan;
 import jakarta.persistence.*;
