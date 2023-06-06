@@ -14,10 +14,10 @@ public class CardEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private LocalDate creationDate;
-    @OneToOne(mappedBy = "card")
+    @OneToOne(mappedBy = "card", cascade = CascadeType.ALL)
     private CustomerEntity cardOwner;
 
-    @OneToMany(mappedBy = "customerCard")
+    @OneToMany(mappedBy = "customerCard", cascade = CascadeType.ALL)
     private List<TransactionEntity> transactions;
 
     public CardEntity() {

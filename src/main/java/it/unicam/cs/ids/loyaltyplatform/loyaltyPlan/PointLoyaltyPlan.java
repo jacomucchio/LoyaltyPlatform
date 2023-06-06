@@ -5,6 +5,8 @@ import it.unicam.cs.ids.loyaltyplatform.transaction.TransactionEntity;
 import it.unicam.cs.ids.loyaltyplatform.enrollment.EnrollmentEntity;
 import it.unicam.cs.ids.loyaltyplatform.enrollment.PointEnrollment;
 import jakarta.persistence.*;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,7 +18,7 @@ public class PointLoyaltyPlan extends LoyaltyPlanEntity {
 
     private int rewardThreshold;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "pointLoyaltyPlan", orphanRemoval = true)
+    @OneToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE}, mappedBy = "pointLoyaltyPlan", orphanRemoval = true)
     private List<RewardEntity> rewards = new ArrayList<>();
 
     public PointLoyaltyPlan(String name, double conversionRate, int rewardThreshold) {

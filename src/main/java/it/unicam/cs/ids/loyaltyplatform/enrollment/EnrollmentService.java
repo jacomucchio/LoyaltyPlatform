@@ -9,8 +9,10 @@ import it.unicam.cs.ids.loyaltyplatform.reward.RewardEntity;
 import it.unicam.cs.ids.loyaltyplatform.reward.RewardService;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Optional;
@@ -22,7 +24,7 @@ public class EnrollmentService {
     private final RewardService rewardService;
 
     @Autowired
-    public EnrollmentService(EnrollmentRepository enrollmentRepository, LevelService levelService,  RewardService rewardService) {
+    public EnrollmentService(EnrollmentRepository enrollmentRepository, LevelService levelService, @Lazy RewardService rewardService) {
         this.enrollmentRepository=enrollmentRepository;
         this.levelService=levelService;
         this.rewardService = rewardService;
@@ -102,4 +104,30 @@ public class EnrollmentService {
         }else throw new IllegalArgumentException("Insufficient point to redeem reward");
     }
 
+    public List<PointEnrollment> getEnrollmentsByReward(RewardEntity reward) {
+        List<PointEnrollment> enrollmentsByReward = new ArrayList<>();
+        List<PointEnrollment> enrollments = this.getAllPointEnrollments();
+
+        for (PointEnrollment enrollment : enrollments) {
+            if (enrollment.getObtainedRewards().contains(reward)) {
+                enrollmentsByReward.add(enrollment);
+            }
+        }
+        return enrollmentsByReward;
+    }
+
+    public List<EnrollmentEntity> getEnrollments() {
+        return this.enrollmentRepository.findAll();
+    }
+    public List<PointEnrollment> getAllPointEnrollments() {
+        List<PointEnrollment> pointEnrollments = new ArrayList<>();
+        List<EnrollmentEntity> enrollments = getEnrollments();
+
+        for (EnrollmentEntity enrollment : enrollments) {
+            if (enrollment instanceof PointEnrollment) {
+                pointEnrollments.add((PointEnrollment) enrollment);
+            }
+        }
+        return pointEnrollments;
+    }
 }

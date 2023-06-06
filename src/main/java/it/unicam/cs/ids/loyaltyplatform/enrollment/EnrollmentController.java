@@ -4,9 +4,13 @@ import it.unicam.cs.ids.loyaltyplatform.customer.CustomerEntity;
 import it.unicam.cs.ids.loyaltyplatform.loyaltyPlan.LoyaltyPlanEntity;
 import it.unicam.cs.ids.loyaltyplatform.customer.CustomerService;
 import it.unicam.cs.ids.loyaltyplatform.loyaltyPlan.LoyaltyPlanService;
+import it.unicam.cs.ids.loyaltyplatform.reward.RewardEntity;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping(path = "/api")
@@ -15,7 +19,7 @@ public class EnrollmentController {
     private final CustomerService customerService;
     private final LoyaltyPlanService planService;
     @Autowired
-    public EnrollmentController(EnrollmentService enrollmentService, CustomerService customerService,
+    public EnrollmentController(@Lazy EnrollmentService enrollmentService, CustomerService customerService,
                                 LoyaltyPlanService planService) {
         this.enrollmentService = enrollmentService;
         this.customerService=customerService;
@@ -37,6 +41,8 @@ public class EnrollmentController {
         LoyaltyPlanEntity plan = planService.findById(planId);
         return ResponseEntity.ok(enrollmentService.upgradeLevel(customer, plan, levelId));
     }
+    @GetMapping("/enrollments")
+    public List<EnrollmentEntity> getEnrollments(){return this.enrollmentService.getEnrollments();}
 
 
 }

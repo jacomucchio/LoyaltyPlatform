@@ -8,6 +8,9 @@ import jakarta.validation.constraints.DecimalMax;
 import jakarta.validation.constraints.DecimalMin;
 import jakarta.validation.constraints.Future;
 import jakarta.validation.constraints.NotNull;
+import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 import org.springframework.validation.annotation.Validated;
 import java.util.List;
 import java.math.BigDecimal;
@@ -38,7 +41,7 @@ public class RewardEntity {
     @JsonIgnore
     private PointLoyaltyPlan pointLoyaltyPlan;
 
-    @ManyToMany(mappedBy = "obtainedRewards")
+    @ManyToMany(mappedBy = "obtainedRewards", cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     private List<PointEnrollment> redeemedByCustomer;
     public RewardEntity(@NotNull BigDecimal discountPercentage, @NotNull Integer requiredPoints, @NotNull LocalDate expirationDate) {
         this.discountPercentage = discountPercentage;

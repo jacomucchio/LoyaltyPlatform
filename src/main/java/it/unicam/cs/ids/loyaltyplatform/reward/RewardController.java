@@ -2,6 +2,7 @@ package it.unicam.cs.ids.loyaltyplatform.reward;
 
 import it.unicam.cs.ids.loyaltyplatform.loyaltyPlan.LoyaltyPlanEntity;
 import it.unicam.cs.ids.loyaltyplatform.loyaltyPlan.LoyaltyPlanService;
+import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -40,7 +41,10 @@ public class RewardController {
         rewardService.addRewardToPlan(companyId, planId, rewardEntity);
         return ResponseEntity.ok().build();
     }
-
+    @Transactional
     @DeleteMapping("/reward/delete/{id}")
-    public void deleteReward(@PathVariable Integer id){ this.rewardService.deleteReward(id); }
+    public ResponseEntity<String> deleteReward(@PathVariable Integer id){
+        this.rewardService.deleteReward(id);
+        return ResponseEntity.ok("Reward removed successfully");
+    }
 }

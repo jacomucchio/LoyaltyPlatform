@@ -3,10 +3,13 @@ package it.unicam.cs.ids.loyaltyplatform.reward;
 
 import it.unicam.cs.ids.loyaltyplatform.company.CompanyEntity;
 import it.unicam.cs.ids.loyaltyplatform.company.CompanyService;
+import it.unicam.cs.ids.loyaltyplatform.enrollment.EnrollmentService;
+import it.unicam.cs.ids.loyaltyplatform.enrollment.PointEnrollment;
 import it.unicam.cs.ids.loyaltyplatform.loyaltyPlan.LoyaltyPlanEntity;
 import it.unicam.cs.ids.loyaltyplatform.loyaltyPlan.LoyaltyPlanService;
 import it.unicam.cs.ids.loyaltyplatform.loyaltyPlan.PointLoyaltyPlan;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
@@ -17,12 +20,14 @@ public class RewardService {
     private final RewardRepository rewardRepository;
     private final CompanyService companyService;
     private final LoyaltyPlanService loyaltyPlanService;
+    private final EnrollmentService enrollmentService;
 
     @Autowired
-    public RewardService(RewardRepository rewardRepository, CompanyService companyService, LoyaltyPlanService loyaltyPlanService) {
+    public RewardService(RewardRepository rewardRepository, CompanyService companyService, LoyaltyPlanService loyaltyPlanService, @Lazy EnrollmentService enrollmentService) {
         this.rewardRepository = rewardRepository;
         this.companyService = companyService;
         this.loyaltyPlanService = loyaltyPlanService;
+        this.enrollmentService = enrollmentService;
     }
 
     public List<RewardEntity> getRewards() { return this.rewardRepository.findAll(); }
@@ -37,7 +42,23 @@ public class RewardService {
     }
 
     public void deleteReward(Integer id) {
-        this.rewardRepository.deleteById(id);
+        RewardEntity reward = this.getRewardById(id);
+
+        PointLoyaltyPlan loyaltyPlan = reward.getPointLoyaltyPlan();
+        if (loyaltyPlan != null) {
+            loyaltyPlan.removeReward(reward);
+            loyaltyPlanService.save(loyaltyPlan);
+        }
+
+        List<PointEnrollment> enrollments = enrollmentService.getEnrollmentsByReward(reward);
+        if (!enrollments.isEmpty()) {
+            for (PointEnrollment enrollment : enrollments) {
+                enrollment.getObtainedRewards().remove(reward);
+                enrollmentService.save(enrollment);
+            }
+        }
+
+        rewardRepository.deleteById(id);
     }
 
     public void addRewardToPlan(Integer companyId, Integer planId, RewardEntity rewardEntity) {
