@@ -49,7 +49,6 @@ public class RewardService {
             loyaltyPlan.removeReward(reward);
             loyaltyPlanService.save(loyaltyPlan);
         }
-
         List<PointEnrollment> enrollments = enrollmentService.getEnrollmentsByReward(reward);
         if (!enrollments.isEmpty()) {
             for (PointEnrollment enrollment : enrollments) {
@@ -57,7 +56,6 @@ public class RewardService {
                 enrollmentService.save(enrollment);
             }
         }
-
         rewardRepository.deleteById(id);
     }
 

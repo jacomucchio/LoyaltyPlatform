@@ -20,21 +20,21 @@ public class TransactionController {
         this.companyService=companyService;
         this.cardService=cardService;
     }
-    @GetMapping("/")
+    @GetMapping("/transactions")
     public List<TransactionEntity> findAll(){
         return transactionService.findAll();
     }
-    @GetMapping("/{id}")
+    @GetMapping("/transaction/{id}")
     public TransactionEntity findById(@PathVariable Integer id){
         return transactionService.findById(id);
     }
 
-    @PostMapping("/")
+    @PostMapping("/transaction/save")
     public void save(TransactionEntity transactionEntity)
     {
         transactionService.save(transactionEntity);
     }
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/transaction/delete/{id}")
     public void deleteById(@PathVariable Integer id)
     {
         transactionService.deleteById(id);
