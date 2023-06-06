@@ -36,7 +36,7 @@ public class CustomerController {
     {
         customerService.save(customer);
     }
-    @DeleteMapping("/customer/delete/{id}")
+    @DeleteMapping("/customer/{id}/delete")
     public ResponseEntity<String> deleteCustomer(@PathVariable Integer id){
         this.customerService.deleteCustomer(id);
         return ResponseEntity.status(HttpStatus.OK).body("Customer deleted successfully");

@@ -4,6 +4,9 @@ import it.unicam.cs.ids.loyaltyplatform.customer.CustomerEntity;
 import it.unicam.cs.ids.loyaltyplatform.loyaltyPlan.PointLoyaltyPlan;
 import it.unicam.cs.ids.loyaltyplatform.reward.RewardEntity;
 import jakarta.persistence.*;
+import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 import java.util.List;
 
@@ -11,7 +14,7 @@ import java.util.List;
 @DiscriminatorValue("point")
 public class PointEnrollment extends EnrollmentEntity{
     private int points;
-    @ManyToMany
+    @ManyToMany(cascade = CascadeType.DETACH)
     @JoinTable(
             name = "obtainedRewards",
             joinColumns = @JoinColumn(name = "point_enrollment_id"),
