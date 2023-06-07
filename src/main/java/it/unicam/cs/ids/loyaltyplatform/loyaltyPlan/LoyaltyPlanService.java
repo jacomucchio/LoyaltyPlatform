@@ -3,6 +3,7 @@ package it.unicam.cs.ids.loyaltyplatform.loyaltyPlan;
 import it.unicam.cs.ids.loyaltyplatform.company.CompanyEntity;
 import it.unicam.cs.ids.loyaltyplatform.company.CompanyRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -14,7 +15,7 @@ public class LoyaltyPlanService {
     private final CompanyRepository companyRepository;
 
     @Autowired
-    public LoyaltyPlanService(LoyaltyPlanRepository loyaltyPlanRepository, CompanyRepository companyRepository) {
+    public LoyaltyPlanService(LoyaltyPlanRepository loyaltyPlanRepository, @Lazy CompanyRepository companyRepository) {
         this.loyaltyPlanRepository = loyaltyPlanRepository;
         this.companyRepository = companyRepository;
     }
@@ -42,6 +43,7 @@ public class LoyaltyPlanService {
     public void deleteById(Integer id) {
         loyaltyPlanRepository.deleteById(id);
     }
+    public void delete(LoyaltyPlanEntity loyaltyPlanEntity){loyaltyPlanRepository.delete(loyaltyPlanEntity);}
 
 
     public List<LoyaltyPlanEntity> findByCompanyId(Integer id) {

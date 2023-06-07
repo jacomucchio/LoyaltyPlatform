@@ -36,12 +36,12 @@ public abstract class LoyaltyPlanEntity {
     private Integer id;
     private String name;
     private int customerCount;
-    @ManyToOne
+    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH})
     @JoinColumn(name = "company_id")
     @JsonBackReference
     private CompanyEntity company;
 
-    @OneToMany(mappedBy="plan")
+    @OneToMany(mappedBy="plan", cascade = {CascadeType.REMOVE})
     @JsonIgnore
     private List<EnrollmentEntity> enrollments = new ArrayList<>();
 

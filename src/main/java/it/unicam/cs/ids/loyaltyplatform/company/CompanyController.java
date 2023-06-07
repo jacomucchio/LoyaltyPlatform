@@ -32,7 +32,7 @@ public class CompanyController {
     @DeleteMapping("/company/{id}/delete")
     public ResponseEntity<String> deleteCompany(@PathVariable Integer id){
         this.companyService.deleteCompany(id);
-        return ResponseEntity.status(HttpStatus.OK).body("Company deleted successfully");
+        return ResponseEntity.ok("Company removed successfully");
     }
 
     @PutMapping("/company/{id}/update")

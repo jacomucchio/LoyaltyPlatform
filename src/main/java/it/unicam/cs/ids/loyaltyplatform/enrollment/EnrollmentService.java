@@ -12,10 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.NoSuchElementException;
-import java.util.Optional;
+import java.util.*;
 
 @Service
 public class EnrollmentService {
@@ -63,12 +60,17 @@ public class EnrollmentService {
         }
         customer.getEnrollments().add(enrollment);
         plan.getEnrollments().add(enrollment);
+        plan.setCustomerCount(plan.getCustomerCount() + 1);
         return enrollmentRepository.save(enrollment);
     }
 
     public Optional<EnrollmentEntity> getEnrollmentByPlanAndCustomer(LoyaltyPlanEntity plan, CustomerEntity customer) {
         return enrollmentRepository.findByPlanAndCustomer(plan, customer);
     }
+    public Collection<? extends EnrollmentEntity> getEnrollmentsByPlan(LoyaltyPlanEntity plan) {
+        return enrollmentRepository.findByPlan(plan);
+    }
+    public void delete(EnrollmentEntity enrollmentEntity){enrollmentRepository.delete(enrollmentEntity);}
 
     public EnrollmentEntity upgradeLevel(CustomerEntity customer, LoyaltyPlanEntity plan, Integer levelId) {
         EnrollmentEntity enrollment=this.getEnrollmentByPlanAndCustomer(plan,customer)
