@@ -20,11 +20,11 @@ public class CompanyEntity {
     private String emailAddress;
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private String password;
-    @OneToMany (mappedBy = "company", cascade =  CascadeType.ALL)
+    @OneToMany (mappedBy = "company", cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @JsonManagedReference
     private List<LoyaltyPlanEntity> loyaltyPlans=new ArrayList<>();
 
-    @OneToMany(mappedBy = "company", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "company", cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     private List<TransactionEntity> transactions;
 
     public CompanyEntity( String name, String emailAddress, String password) {

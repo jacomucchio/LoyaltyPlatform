@@ -15,14 +15,12 @@ public abstract class EnrollmentEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne//(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH})
     @JoinColumn(name = "customer_id")
-    //@OnDelete(action = OnDeleteAction.CASCADE)
     private CustomerEntity customer;
 
-    @ManyToOne //(cascade = CascadeType.ALL)
+    @ManyToOne//(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH})
     @JoinColumn(name = "plan_id")
-    //@OnDelete(action = OnDeleteAction.CASCADE)
     private LoyaltyPlanEntity plan;
 
     private LocalDate date;

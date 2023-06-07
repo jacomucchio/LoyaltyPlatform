@@ -21,7 +21,7 @@ public class TransactionEntity {
     @JsonIgnore
     private CardEntity customerCard;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY)//,  cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH})
     @JoinColumn(name = "company_id")
     @JsonIgnore
     private CompanyEntity company;

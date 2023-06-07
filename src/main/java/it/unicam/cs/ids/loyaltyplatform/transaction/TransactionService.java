@@ -4,11 +4,13 @@ import it.unicam.cs.ids.loyaltyplatform.card.CardEntity;
 import it.unicam.cs.ids.loyaltyplatform.company.CompanyEntity;
 import it.unicam.cs.ids.loyaltyplatform.enrollment.EnrollmentEntity;
 import it.unicam.cs.ids.loyaltyplatform.enrollment.EnrollmentRepository;
+import it.unicam.cs.ids.loyaltyplatform.loyaltyPlan.LoyaltyPlanEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 import java.util.NoSuchElementException;
 
@@ -44,6 +46,10 @@ public class TransactionService {
         this.save(transactionEntity);
         return transactionEntity;
     }
+    public Collection<? extends TransactionEntity> getTransactionsByCompany(CompanyEntity company) {
+        return transactionRepository.findByCompany(company);
+    }
+    public void delete(TransactionEntity transaction){ this.transactionRepository.delete(transaction);}
 }
 
 
