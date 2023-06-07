@@ -25,7 +25,7 @@ public class CompanyEntity {
     @JsonManagedReference
     private List<LoyaltyPlanEntity> loyaltyPlans=new ArrayList<>();
 
-    @OneToMany
+    @OneToMany(mappedBy = "company", cascade = CascadeType.ALL)
     private List<TransactionEntity> transactions;
 
     public CompanyEntity( String name, String emailAddress, String password) {
