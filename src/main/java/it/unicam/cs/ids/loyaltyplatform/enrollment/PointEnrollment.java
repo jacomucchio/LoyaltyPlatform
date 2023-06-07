@@ -4,9 +4,6 @@ import it.unicam.cs.ids.loyaltyplatform.customer.CustomerEntity;
 import it.unicam.cs.ids.loyaltyplatform.loyaltyPlan.PointLoyaltyPlan;
 import it.unicam.cs.ids.loyaltyplatform.reward.RewardEntity;
 import jakarta.persistence.*;
-import org.hibernate.annotations.Cascade;
-import org.hibernate.annotations.OnDelete;
-import org.hibernate.annotations.OnDeleteAction;
 
 import java.util.List;
 

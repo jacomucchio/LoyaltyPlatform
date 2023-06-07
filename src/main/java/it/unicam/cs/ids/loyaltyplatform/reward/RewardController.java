@@ -1,7 +1,6 @@
 package it.unicam.cs.ids.loyaltyplatform.reward;
 
 import it.unicam.cs.ids.loyaltyplatform.loyaltyPlan.LoyaltyPlanEntity;
-import it.unicam.cs.ids.loyaltyplatform.loyaltyPlan.LoyaltyPlanService;
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -12,7 +12,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.NoSuchElementException;
-import java.util.Objects;
 
 @Service
 public class LevelService {
@@ -57,20 +56,20 @@ public class LevelService {
                 .orElseThrow(()-> new NoSuchElementException("level not found"));
     }
     public void deleteLevel(Integer companyId, Integer planId, Integer levelId) {
-        //ottengo l'azienda
+
         CompanyEntity company = companyService.getCompanyById(companyId);
-        // Controlla se il piano esiste nell'azienda
+
         LoyaltyPlanEntity plan= loyaltyPlanService.findByIdAndCompanyId(planId,companyId);
-        //controlla se il livello esiste nel piano
+
         if(plan instanceof LevelLoyaltyPlan levelPlan){
             LevelEntity level = this.findByIdAndPlan_Id(levelId,planId);
             if(levelPlan.getBaseLevel().equals(level)) throw new DataIntegrityViolationException
                     ("base level cannot be deleted");
-            // Recupera le iscrizioni associate al livello
+
             List<LevelEnrollment> enrollments = enrollmentRepository.findByCurrentLevel(level);
-            // Aggiorna il livello degli utenti iscritti
+
             for (LevelEnrollment enrollment : enrollments) {
-                enrollment.setCurrentLevel(levelPlan.getBaseLevel()); // Imposta il livello al piano base
+                enrollment.setCurrentLevel(levelPlan.getBaseLevel());
             }
             levelRepository.delete(level);
         } else throw new IllegalArgumentException("plan is not a level plan");
