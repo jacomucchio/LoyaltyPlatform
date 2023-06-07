@@ -9,6 +9,7 @@ import it.unicam.cs.ids.loyaltyplatform.transaction.TransactionEntity;
 import it.unicam.cs.ids.loyaltyplatform.enrollment.EnrollmentEntity;
 import jakarta.persistence.*;
 
+
 import java.util.ArrayList;
 import java.util.List;
 

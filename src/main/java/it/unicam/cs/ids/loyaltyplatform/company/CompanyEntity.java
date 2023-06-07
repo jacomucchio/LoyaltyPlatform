@@ -5,7 +5,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import it.unicam.cs.ids.loyaltyplatform.loyaltyPlan.LoyaltyPlanEntity;
 import it.unicam.cs.ids.loyaltyplatform.transaction.TransactionEntity;
 import jakarta.persistence.*;
-
 import java.util.ArrayList;
 import java.util.List;
 import jakarta.persistence.Table;

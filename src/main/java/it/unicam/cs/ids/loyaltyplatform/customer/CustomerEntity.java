@@ -36,7 +36,7 @@ public class CustomerEntity {
     @JoinColumn(name = "card_id")
     private CardEntity card;
 
-    @OneToMany(mappedBy="customer")
+    @OneToMany(mappedBy="customer",  cascade =  CascadeType.ALL) //ho aggiunto il cascade type all
     @JsonIgnore
     private List<EnrollmentEntity> enrollments = new ArrayList<>();
 

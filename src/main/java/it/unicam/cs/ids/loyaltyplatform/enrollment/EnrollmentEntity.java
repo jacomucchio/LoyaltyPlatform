@@ -17,10 +17,12 @@ public abstract class EnrollmentEntity {
 
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "customer_id")
+    //@OnDelete(action = OnDeleteAction.CASCADE)
     private CustomerEntity customer;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne //(cascade = CascadeType.ALL)
     @JoinColumn(name = "plan_id")
+    //@OnDelete(action = OnDeleteAction.CASCADE)
     private LoyaltyPlanEntity plan;
 
     private LocalDate date;
