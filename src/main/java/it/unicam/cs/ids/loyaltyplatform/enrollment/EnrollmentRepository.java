@@ -18,6 +18,6 @@ public interface EnrollmentRepository extends JpaRepository<EnrollmentEntity,Int
     @Query("SELECT e FROM LevelEnrollment e WHERE e.currentLevel = :currentLevel")
     List<LevelEnrollment> findByCurrentLevel(@Param("currentLevel") LevelEntity currentLevel);
 
-
     List<? extends EnrollmentEntity> findByPlan(LoyaltyPlanEntity plan);
+
 }

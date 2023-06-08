@@ -44,8 +44,6 @@ public class EnrollmentController {
     }
     @GetMapping("/enrollments")
     public List<EnrollmentEntity> getEnrollments(){return this.enrollmentService.getEnrollments();}
-//    @GetMapping("/enrollments-by-plan")
-//    public List<EnrollmentEntity> getEnrollmentsByPlan(LoyaltyPlanEntity loyaltyPlan){return this.enrollmentService.getEnrollmentsByPlan(loyaltyPlan);}
 
     @ExceptionHandler(IllegalArgumentException.class)
     public ResponseEntity<String> handleIllegalArgumentException(IllegalArgumentException ex) {
